@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="main-window-pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="672.0" fitWidth="1200.0" layoutX="260.0" layoutY="287.0" opacity="0.36" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../img/EmailUI.png" />
+         </image>
+      </ImageView>
+      <TreeView id="folder-view" fx:id="folderSelection" layoutX="-5.0" layoutY="113.0" prefHeight="491.0" prefWidth="192.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="113.0">
+         <styleClass>
+            <String fx:value="font-myriad" />
+            <String fx:value="font-white" />
+         </styleClass></TreeView>
+      <ListView id="email-cell-view" fx:id="emailSelection" layoutX="192.0" prefHeight="674.0" prefWidth="302.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="192.0" AnchorPane.topAnchor="30.0" />
+      <Pane id="compose-key-pane" layoutY="30.0" prefHeight="84.0" prefWidth="192.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <Button id="compose-key" layoutX="23.0" layoutY="23.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="139.0" text="COMPOSE">
+               <styleClass>
+                  <String fx:value="font-rockwell" />
+                  <String fx:value="font-bold" />
+                  <String fx:value="font-white" />
+               </styleClass></Button>
+         </children>
+      </Pane>
+      
+      <WebView fx:id="messageViewShort" layoutX="529.0" layoutY="141.0" prefHeight="354.0" prefWidth="438.0" />
+      <Label id="message-title" fx:id="messageTitle" layoutX="522.0" layoutY="50.0" prefHeight="23.0" prefWidth="319.0">
+         <styleClass>
+            <String fx:value="font-rockwell" />
+            <String fx:value="font-bold" />
+         </styleClass></Label>
+      <Label fx:id="messageSenderName" layoutX="522.0" layoutY="74.0" prefHeight="17.0" prefWidth="302.0">
+         <styleClass>
+            <String fx:value="font-rockwell" />
+            <String fx:value="font-grey" />
+         </styleClass></Label>
+      <Button fx:id="messageKeyTrash" layoutX="944.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+      <Button fx:id="messageKeyStar" layoutX="918.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+      <Label fx:id="messageTime" layoutX="940.0" layoutY="53.0" prefHeight="17.0" prefWidth="28.0">
+         <styleClass>
+            <String fx:value="font-rockwell" />
+            <String fx:value="font-grey" />
+         </styleClass></Label>
+      <Line fx:id="headerDiv" endX="336.5999755859375" layoutX="621.0" layoutY="115.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" />
+      <Line fx:id="footerDiv" endX="336.5999755859375" layoutX="621.0" layoutY="549.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" />
+      <Label fx:id="messageAttachmentLabel" layoutX="520.0" layoutY="523.0" prefHeight="17.0" prefWidth="116.0">
+         <styleClass>
+            <String fx:value="font-rockwell" />
+            <String fx:value="font-grey" />
+         </styleClass></Label>
+      <Label fx:id="messageDate" layoutX="884.0" layoutY="53.0" prefHeight="17.0" prefWidth="50.0">
+         <styleClass>
+            <String fx:value="font-rockwell" />
+            <String fx:value="font-grey" />
+         </styleClass></Label>
+      <WebView fx:id="messageViewLong" layoutX="503.0" layoutY="129.0" prefHeight="538.0" prefWidth="489.0" visible="false" />
+      <Label layoutX="10.0" layoutY="617.0" prefHeight="17.0" prefWidth="139.0">
+         <styleClass>
+            <String fx:value="font-rockwell" />
+            <String fx:value="font-bold" />
+            <String fx:value="font-white" />
+         </styleClass></Label>
+      <Label layoutX="10.0" layoutY="634.0" prefHeight="17.0" prefWidth="148.0" styleClass="font-rockwell" />
+      <ImageView fx:id="defaultMessageViewBG" fitHeight="376.0" fitWidth="376.0" layoutX="552.0" layoutY="149.0">
+         <image>
+            <Image url="@../img/EmailBackground-01.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

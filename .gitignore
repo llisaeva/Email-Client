@@ -1,0 +1,15 @@
+.gradle
+
+build
+
+bin/
+
+.project
+
+.classpath
+
+.settings/
+
+gradle.properties
+
+runArgs.txt

@@ -1,0 +1,99 @@
+/*** GENERAL ***/
+
+* {
+	color1: #212d40;
+	color2: #011826;
+	color3: #cccccc;
+	color4: #999999;
+	color5: white;
+	
+}
+
+@font-face{
+	font-family: 'Myriad Pro';
+    src: url("../font/Myriad_Pro_Regular.ttf");
+}
+
+@font-face{
+	font-family: 'Myriad Pro Light SemiCond';
+    src: url("../font/Myriad_Pro_Light_SemiCondensed.otf");
+}
+
+
+* {
+	color1: #212d40;
+}
+
+.email-cell, .email-cell:hover, .email-cell:focused{
+	-fx-graphic-text-gap: 0;
+	-fx-padding: 0px;
+	-fx-background-color: color5;
+	-fx-border-color: color3, color3, color3, transparent;
+	-fx-border-width: 0.5, 0.5, 0.5, 0;
+}
+
+#email-cell-title {
+	-fx-font-size: 15;
+}
+
+#message-title {
+	-fx-font-size: 15;
+}
+
+.list-view .scroll-bar:vertical,
+.list-view .scroll-bar:horizontal {
+    -fx-scale-x: 0;
+    -fx-opacity: 0;
+    -fx-padding:-7;
+}
+
+#main-window-pane {
+	-fx-background-color: color2;
+}
+
+#message-pane {
+	-fx-background-color: color5;
+}
+
+#email-cell-message {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+}
+
+.text {
+	-fx-text-fill: black;
+}
+
+.font-rockwell {
+	-fx-font-family: 'Rockwell';
+}
+
+.font-myriad {
+	-fx-font-family: 'Myriad Pro';
+}
+
+.font-bold {
+	-fx-font-weight: bold;
+}
+
+.font-grey {
+	-fx-text-fill: color4;
+}
+
+.font-white {
+	-fx-text-fill: color5;
+}
+
+#folder-view * {
+	-fx-background-color: color1;
+	-fx-text-fill: color5;
+}
+
+#compose-key-pane {
+	-fx-background-color: color1;
+}
+
+
+.line {
+	-fx-stroke: color3;
+}

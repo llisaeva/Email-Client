@@ -1,0 +1,64 @@
+plugins {
+	id 'java-library'
+    id 'java'
+    id 'eclipse'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+	id 'org.beryx.jlink' version '2.20.0'
+	id 'application'
+}
+
+javafx {
+	version = '14'
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.base']
+}
+
+application {
+	mainModule = 'com.lisaeva.email' // name defined in module-info.java
+    mainClass = 'com.lisaeva.email.Launcher'
+}
+
+jar {
+    manifest {
+    	attributes(
+ //   		'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      		'Main-Class': 'com.lisaeva.email.Launcher'
+      	)
+    }
+}
+
+/*sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources/css", "src/main/resources/font", "src/main/resources/img", "src/main/resources/fxml"
+        }
+    }
+}*/
+
+eclipse {
+    classpath {
+        file {
+            whenMerged {
+                entries.findAll { it.properties.kind.equals('lib') }.each {
+                    it.entryAttributes['module'] = 'true'
+                }
+            }
+        }
+    }
+}
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'EmailClient'
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:29.0-jre'
+    runtimeOnly 'javax.mail:mail:1.6.2'
+}
