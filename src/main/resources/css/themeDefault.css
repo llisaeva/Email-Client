@@ -1,11 +1,14 @@
 /*** GENERAL ***/
 
 * {
-	color1: #212d40;
-	color2: #011826;
-	color3: #cccccc;
-	color4: #999999;
-	color5: white;
+	mid-blue-color: #212d40;
+	dark-blue-color: #011826;
+	cell-unselected-color: #f2f2f2;
+	folder-selected-color: #495362;
+	light-grey-color: #cccccc;
+	dark-grey-color: #999999;
+	white-color: white;
+	teal-color: #98c0bb;
 	
 }
 
@@ -19,25 +22,64 @@
     src: url("../font/Myriad_Pro_Light_SemiCondensed.otf");
 }
 
+/*** EMAIL SELECTION ***/
 
-* {
-	color1: #212d40;
+#email-cell-view, #email-cell-view:selected {
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
 }
 
-.email-cell, .email-cell:hover, .email-cell:focused{
+.email-cell {
 	-fx-graphic-text-gap: 0;
 	-fx-padding: 0px;
-	-fx-background-color: color5;
-	-fx-border-color: color3, color3, color3, transparent;
+	-fx-background-color: cell-unselected-color;
+	-fx-border-color: light-grey-color, light-grey-color, light-grey-color, transparent;
 	-fx-border-width: 0.5, 0.5, 0.5, 0;
+}
+
+.email-cell:selected {
+	-fx-background-color: white-color;
+}
+
+.email-cell:empty {
+	visibility: hidden;
 }
 
 #email-cell-title {
 	-fx-font-size: 15;
 }
 
+#email-cell-title {
+	-fx-text-fill: black;
+}
+
+#email-cell-message *, #email-cell-message  {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+}
+
+#email-cell-focused {
+	-fx-background-color: teal-color;
+}
+
+#message-long-view .scroll-bar {
+	visibility: hidden;
+}
+
+
+
+
 #message-title {
 	-fx-font-size: 15;
+}
+
+#folder-view .tree-cell:hover {
+	-fx-text-fill: teal-color;
+}
+
+#folder-view .tree-cell:focused {
+	-fx-background-color: folder-selected-color;
+	-fx-text-fill: teal-color;
 }
 
 .list-view .scroll-bar:vertical,
@@ -48,17 +90,22 @@
 }
 
 #main-window-pane {
-	-fx-background-color: color2;
+	-fx-background-color: white-color;
 }
 
 #message-pane {
-	-fx-background-color: color5;
+	-fx-background-color: white-color;
 }
 
-#email-cell-message {
-	-fx-background-color: transparent;
-	-fx-border-color: transparent;
+#settings-pane {
+	-fx-background-color: dark-blue-color;
 }
+
+#account-pane {
+	-fx-background-color: dark-blue-color;
+}
+
+
 
 .text {
 	-fx-text-fill: black;
@@ -77,23 +124,44 @@
 }
 
 .font-grey {
-	-fx-text-fill: color4;
+	-fx-text-fill: dark-grey-color;
 }
 
 .font-white {
-	-fx-text-fill: color5;
+	-fx-text-fill: white-color;
 }
 
 #folder-view * {
-	-fx-background-color: color1;
-	-fx-text-fill: color5;
+	-fx-background-color: mid-blue-color;
+	-fx-text-fill: white-color;
 }
 
 #compose-key-pane {
-	-fx-background-color: color1;
+	-fx-background-color: mid-blue-color;
+}
+
+
+#compose-key {
+	-fx-background-color: teal-color;
 }
 
 
 .line {
-	-fx-stroke: color3;
+	-fx-stroke: light-grey-color;
+}
+
+#key-trash {
+
+	-fx-graphic: url('../img/default/trash.png');
+	-fx-scale-x: 0.02;
+	-fx-scale-y: 0.02;
+	-fx-background-color: transparent;
+}
+
+#key-star {
+
+	-fx-graphic: url('../img/default/star.png');
+	-fx-scale-x: 0.018;
+	-fx-scale-y: 0.018;
+	-fx-background-color: transparent;
 }

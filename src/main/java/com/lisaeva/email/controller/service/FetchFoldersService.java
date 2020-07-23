@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import javax.mail.Folder;
 import javax.mail.MessagingException;
 import javax.mail.Store;
+import javax.mail.event.MessageCountEvent;
+import javax.mail.event.MessageCountListener;
 
 import com.lisaeva.email.model.FolderTreeItem;
+import com.lisaeva.email.view.IconResolver;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -42,7 +45,23 @@ public class FetchFoldersService extends Service<Void>{
 	private void handleFolders(Folder[] folders, FolderTreeItem foldersRoot) throws MessagingException {
 		for(Folder folder: folders) {
 			folderList.add(folder);
+			folder.addMessageCountListener(new MessageCountListener(){
+
+				@Override
+				public void messagesAdded(MessageCountEvent e) {
+					
+					
+				}
+
+				@Override
+				public void messagesRemoved(MessageCountEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
 			FolderTreeItem folderTreeItem = new FolderTreeItem(folder);
+			folderTreeItem.setGraphic(IconResolver.getIconForFolder(folder.getName()));
 			foldersRoot.getChildren().add(folderTreeItem);
 //			System.out.println("added folder");
 			foldersRoot.setExpanded(true);

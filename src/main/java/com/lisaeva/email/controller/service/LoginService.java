@@ -41,6 +41,9 @@ public class LoginService {
 			emailAccount.setStore(store);
 			
 			
+
+			
+			
 //			Folder inbox = store.getFolder("INBOX");
 //			 // open the INBOX folder
 //			 inbox.open(Folder.READ_WRITE);

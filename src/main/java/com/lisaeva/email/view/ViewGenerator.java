@@ -30,9 +30,6 @@ public class ViewGenerator {
 		stage.setScene(initializeScene(controller));
 
 		stage.show();
-		
-		
-		
 	}
 	
 	

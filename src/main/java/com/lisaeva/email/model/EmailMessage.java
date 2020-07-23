@@ -1,8 +1,10 @@
 package com.lisaeva.email.model;
 
+import java.io.IOException;
 import java.util.Date;
 
 import javax.mail.Message;
+import javax.mail.MessagingException;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,7 +13,7 @@ public class EmailMessage {
 	private SimpleStringProperty sender;
     private SimpleObjectProperty<Date> date;
     private SimpleStringProperty title;
-    private boolean selected;
+    private boolean selected = false;
     private boolean hasAttachment;
     private Message message;
     
@@ -41,9 +43,17 @@ public class EmailMessage {
 	public boolean isSelected() {
 		return selected;
 	}
+	
+	public void setSelected(boolean b) {
+		selected = b;
+	}
 
 	public boolean isHasAttachment() {
 		return hasAttachment;
+	}
+	
+	public String getDemoMessage() throws IOException, MessagingException {
+		return message.getContent().toString();
 	}
 	
 	

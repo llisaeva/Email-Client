@@ -7,6 +7,7 @@ module com.lisaeva.email {
 	requires javafx.base;
 	requires java.mail;
 	requires javafx.web;
+	requires activation;
 	
 	opens com.lisaeva.email.controller;
 	opens com.lisaeva.email.controller.service;

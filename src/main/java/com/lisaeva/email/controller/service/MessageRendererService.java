@@ -6,17 +6,18 @@ import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
-import javax.mail.internet.MimeBodyPart;
 
 import com.lisaeva.email.model.EmailMessage;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.scene.control.TextArea;
 import javafx.scene.web.WebEngine;
 
 public class MessageRendererService extends Service<Object>{
 	private EmailMessage emailMessage;
 	private WebEngine webEngine;
+	private TextArea textArea;
 	private StringBuffer stringBuffer;
 
 	public MessageRendererService(WebEngine webEngine) {
@@ -24,6 +25,14 @@ public class MessageRendererService extends Service<Object>{
 		this.stringBuffer = new StringBuffer();
 		this.setOnSucceeded(event -> {
 			displayMessage();
+		});
+	}
+	
+	public MessageRendererService(TextArea textArea) {
+		this.textArea = textArea;
+		this.stringBuffer = new StringBuffer();
+		this.setOnSucceeded(event -> {
+			displayDemoMessage();
 		});
 	}
 
@@ -98,5 +107,24 @@ public class MessageRendererService extends Service<Object>{
 
 	private void displayMessage() {
 		webEngine.loadContent(stringBuffer.toString());
+
+	}
+	
+	private void displayDemoMessage() {
+		String content = stringBuffer.toString();
+		content = content.replaceAll("\\<.*?\\>", "");
+		content = content.replaceAll("[.].*[{].*[}]", "");
+		content = content.replaceAll("\\&nbsp;", " ");
+		
+		content = content.replaceAll("[/]", "");
+		content = content.replaceAll("\s+|\\v+|\\h+", " ");
+		content = content.replaceAll("[<][!][-][-].*[-][-][>]", "");
+		content = content.replaceAll("[@].*[{].*[}]", "");
+		content = content.replaceAll("[a-z]+[.][a-zA-Z]+\\h*[{].*[}]", "");
+		content = content.replaceAll("[a-z]+[{].*[}]","");
+		content = content.replaceAll("[*]\\h*[{].*[}]","");
+		content = content.strip();
+		textArea.setText(content);
+
 	}
 }
