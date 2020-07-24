@@ -1,5 +1,10 @@
 # Email Client (Work in progress)
-User can recieve, read and send emails using Gmail.
+
+__User can recieve, read and send emails using Gmail.__
+
+<p>
+  <img src="https://github.com/llisaeva/Email-Client/blob/master/demo_img/Capture.jpg" align ="right"/>
+</p>
 
 ## Tools used
 - [Java 14](https://www.oracle.com/java/technologies/javase-downloads.html)
