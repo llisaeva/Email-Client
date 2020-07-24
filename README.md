@@ -1,6 +1,6 @@
 # Email Client (Work in progress)
 
-__User can recieve, read and send emails using Gmail.__
+__User can recieve, read and send emails using a Gmail account.__
 
 <p>
   <img src="https://github.com/llisaeva/Email-Client/blob/master/demo_img/Capture.jpg" align ="right"/>
