@@ -1,7 +1,5 @@
 package com.lisaeva.email.model;
 
-import java.util.ArrayList;
-
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -37,13 +35,9 @@ public class FolderTreeItem extends TreeItem<String>{
 		
 	}
 	
-	public void addEmail(Message message) throws MessagingException {
+	public void addEmail(Message message) {
 //		boolean messageIsRead = message.getFlags().contains(Flags.Flag.SEEN);
-		EmailMessage email = new EmailMessage(
-				message.getFrom()[0].toString(),
-				message.getSentDate(),
-				message.getSubject(),
-				message);
+		EmailMessage email = fetchMessage(message);
 //		System.out.println(email.getTitle());
 		addEmail(email);
 //		if(!messageIsRead)
@@ -51,8 +45,28 @@ public class FolderTreeItem extends TreeItem<String>{
 //		return emailMessage;
 	}
 	
+	private EmailMessage fetchMessage(Message message) {
+		EmailMessage email = null;
+		try {
+			email = new EmailMessage(
+				message.getFrom()[0].toString(),
+				message.getSentDate(),
+				message.getSubject(),
+				message);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return email;
+	}
+	
 	public ObservableList<EmailMessage> getEmailMessages() {
 		return emails;
+	}
+
+	public void addEmailToTop(Message message) {
+		EmailMessage emailMessage = fetchMessage(message);
+		emails.add(0, emailMessage);
+		
 	}
 	
 }

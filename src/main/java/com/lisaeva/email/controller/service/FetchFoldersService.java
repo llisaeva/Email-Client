@@ -3,6 +3,7 @@ package com.lisaeva.email.controller.service;
 import java.util.ArrayList;
 
 import javax.mail.Folder;
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Store;
 import javax.mail.event.MessageCountEvent;
@@ -66,7 +67,7 @@ public class FetchFoldersService extends Service<Void>{
 //			System.out.println("added folder");
 			foldersRoot.setExpanded(true);
 			fetchMessagesOnFolder(folderTreeItem);
-//			addMessageListenerToFolder(folder, emailTreeItem);
+			addMessageListenerToFolder(folder, folderTreeItem);
 //			if (folder.getName().equalsIgnoreCase("inbox")) {
 //				EmailManager.setUpInbox(emailTreeItem);
 //			}
@@ -76,6 +77,27 @@ public class FetchFoldersService extends Service<Void>{
 			}
 			
 		}
+		
+	}
+	
+	private void addMessageListenerToFolder(Folder folder, FolderTreeItem folderTreeItem) {
+		folder.addMessageCountListener(new MessageCountListener() {
+
+			@Override
+			public void messagesAdded(MessageCountEvent e) {
+				for(int i = 0; i < e.getMessages().length; i++) {
+					try {
+						Message message = folder.getMessage(folder.getMessageCount() - i);
+						folderTreeItem.addEmailToTop(message);
+					} catch (MessagingException ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+
+			@Override
+			public void messagesRemoved(MessageCountEvent e) {}	
+		});
 		
 	}
 	

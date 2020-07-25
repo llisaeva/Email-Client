@@ -16,7 +16,7 @@
 
 <AnchorPane id="main-window-pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="672.0" fitWidth="1200.0" layoutX="260.0" layoutY="287.0" opacity="0.36" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="672.0" fitWidth="1200.0" layoutX="260.0" layoutY="287.0" opacity="0.36" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../img/EmailUI.png" />
          </image>
@@ -57,8 +57,6 @@
                   <String fx:value="font-bold" />
                </styleClass>
             </Label>
-            
-                  <WebView fx:id="messageViewShort" layoutX="26.0" layoutY="151.0" prefHeight="354.0" prefWidth="438.0" />
             <Label fx:id="messageSenderName" layoutX="26.0" layoutY="37.0" prefHeight="17.0" prefWidth="302.0">
                <styleClass>
                   <String fx:value="font-rockwell" />
@@ -76,6 +74,8 @@
                </styleClass>
             </Label>
             <WebView id="message-long-view" fx:id="messageViewLong" layoutX="9.0" layoutY="86.0" prefHeight="579.0" prefWidth="489.0" />
+            <WebView id="message-long-view" fx:id="messageViewShort" layoutX="9.0" layoutY="124.0" prefHeight="376.0" prefWidth="489.0" />
+            <ListView fx:id="attachmentList" layoutY="555.0" orientation="HORIZONTAL" prefHeight="111.0" prefWidth="508.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="composePane" layoutX="492.0" layoutY="159.0" prefHeight="200.0" prefWidth="508.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="492.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

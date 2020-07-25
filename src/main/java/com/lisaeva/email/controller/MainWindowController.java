@@ -14,8 +14,11 @@ import com.lisaeva.email.controller.service.MessageRendererService;
 import com.lisaeva.email.model.EmailCell;
 import com.lisaeva.email.model.EmailManager;
 import com.lisaeva.email.model.FolderTreeItem;
+import com.lisaeva.email.model.Attachment;
+import com.lisaeva.email.model.AttachmentCell;
 import com.lisaeva.email.model.EmailAccount;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,6 +39,7 @@ public class MainWindowController extends BaseController implements Initializabl
 	
 	 @FXML private TreeView<String> folderSelection;
 	 @FXML private ListView<EmailMessage> emailSelection;
+	 @FXML private ListView<Attachment> attachmentList;
 	 @FXML private AnchorPane messagePane;
 	 @FXML private Button messageKeyTrash;
 	 @FXML private Button messageKeyStar;
@@ -73,6 +77,19 @@ public class MainWindowController extends BaseController implements Initializabl
 
 			}
 		});
+		
+		attachmentList.setCellFactory(new Callback<ListView<Attachment>, ListCell<Attachment>>(){
+			@Override
+			public ListCell<Attachment> call(ListView<Attachment> param) {				
+				return new AttachmentCell();
+			}
+			
+		});
+		
+		ObservableList<Attachment> ats = FXCollections.observableArrayList();
+		for (int i = 0; i < 9; i++)
+			ats.add(new Attachment());
+		attachmentList.getItems().addAll(ats);
 		
 		messageViewShort.setVisible(false);
 		footerDiv.setVisible(false);

@@ -12,27 +12,27 @@ public class IconResolver {
 		ImageView imageView = null;
 		
 		try {
-			if(lowerCaseFolderName.contains("@")) {
-//				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/at-dark.png")));
+			if(lowerCaseFolderName.contains("gmail")) {
+				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/at.png")));
 			} else if (lowerCaseFolderName.contains("inbox")){
 				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/inbox.png")));
-			} /*else if (lowerCaseFolderName.contains("all")){
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("img/emails-dark.png")));
+			} else if (lowerCaseFolderName.contains("all")){
+				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/mail.png")));
 			} else if (lowerCaseFolderName.contains("sent")){
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("img/sent-dark.png")));
+				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/sent.png")));
 			} else if (lowerCaseFolderName.contains("spam")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("img/spam-dark.png")));
+				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/spam.png")));
 			} else if (lowerCaseFolderName.contains("important")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("img/flag-dark.png")));
+				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/flag.png")));
 			} else if (lowerCaseFolderName.contains("draft")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("img/draft-dark.png")));
+				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/draft.png")));
 			} else if (lowerCaseFolderName.contains("star")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("img/starred-dark.png")));
+				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/star-folder.png")));
 			} else if (lowerCaseFolderName.contains("trash")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("img/trash-dark.png")));
+				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/trash-folder.png")));
 			} else {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("img/email-dark.png")));
-			}*/
+				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/mail.png")));
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

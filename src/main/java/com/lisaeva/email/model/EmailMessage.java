@@ -1,10 +1,13 @@
 package com.lisaeva.email.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.internet.MimeBodyPart;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,6 +19,7 @@ public class EmailMessage {
     private boolean selected = false;
     private boolean hasAttachment;
     private Message message;
+    private List<MimeBodyPart> attachmentList = new ArrayList<MimeBodyPart>();
     
 	public EmailMessage(String sender, Date date, String title, Message message) {
 		this.sender = new SimpleStringProperty(sender);
@@ -54,6 +58,11 @@ public class EmailMessage {
 	
 	public String getDemoMessage() throws IOException, MessagingException {
 		return message.getContent().toString();
+	}
+
+	public void addAttachment(MimeBodyPart mbp) {
+		attachmentList.add(mbp);
+		
 	}
 	
 	
