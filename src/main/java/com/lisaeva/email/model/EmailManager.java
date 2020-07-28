@@ -28,15 +28,9 @@ public class EmailManager {
 	public FolderTreeItem getFolderRoot() { return foldersRoot; }
 	public void setSelectedFolder(FolderTreeItem item) { selectedFolder = item; }
 	public void setSelectedMessage(EmailMessage emailMessage) { this.selectedMessage = emailMessage; }
-	public EmailMessage getSelectedMessage() { return selectedMessage; }
-	
-	public FolderTreeItem getSelectedFolder() {
-		return selectedFolder;
-	}
-	
-	public EmailAccount getEmailAccount() {
-		return emailAccount;
-	}
+	public EmailMessage getSelectedMessage() { return selectedMessage; }	
+	public FolderTreeItem getSelectedFolder() { return selectedFolder; }
+	public EmailAccount getEmailAccount() { return emailAccount; }
 	
 	
 }

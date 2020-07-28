@@ -74,7 +74,7 @@
                </styleClass>
             </Label>
             <WebView id="message-long-view" fx:id="messageViewLong" layoutX="9.0" layoutY="86.0" prefHeight="579.0" prefWidth="489.0" />
-            <WebView id="message-long-view" fx:id="messageViewShort" layoutX="9.0" layoutY="124.0" prefHeight="376.0" prefWidth="489.0" />
+            <WebView id="message-long-view" fx:id="messageViewShort" layoutX="9.0" layoutY="123.0" prefHeight="392.0" prefWidth="489.0" />
             <ListView fx:id="attachmentList" layoutY="555.0" orientation="HORIZONTAL" prefHeight="111.0" prefWidth="508.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>

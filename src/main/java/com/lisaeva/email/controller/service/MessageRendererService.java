@@ -29,12 +29,8 @@ public class MessageRendererService extends Service<Object>{
 		});
 	}
 	
-	public MessageRendererService(TextArea textArea) {
-		this.textArea = textArea;
+	public MessageRendererService() {
 		this.stringBuffer = new StringBuffer();
-		this.setOnSucceeded(event -> {
-			displayDemoMessage();
-		});
 	}
 
 	@Override
@@ -62,6 +58,7 @@ public class MessageRendererService extends Service<Object>{
 			Multipart multipart = (Multipart) message.getContent();
 			loadMultipart(multipart, stringBuffer);
 		}
+		emailMessage.setDemoMessage(getDemoMessage());
 	}
 	
 	private void loadMultipart(Multipart multipart, StringBuffer stringBuffer) throws MessagingException, IOException {
@@ -72,17 +69,17 @@ public class MessageRendererService extends Service<Object>{
 				stringBuffer.append(bodyPart.getContent().toString());
 			} else if (isMultipartType(contentType)){
 				Multipart multipart2 = (Multipart) bodyPart.getContent();
-				loadMultipart(multipart2,stringBuffer); }
-//			} else if (!isTextPlain(contentType)) {
-//				MimeBodyPart mbp = (MimeBodyPart) bodyPart;
-//				emailMessage.addAttachment(mbp);
-//			}
+				loadMultipart(multipart2,stringBuffer); 
+			} else if (!isTextPlain(contentType)) {				
+				MimeBodyPart mbp = (MimeBodyPart) bodyPart;
+				emailMessage.addAttachment(mbp);
+			}
 		}
 	}
 	
-//	private boolean isTextPlain(String contentType) {
-//		return contentType.contains("TEXT/PLAIN");
-//	}
+	private boolean isTextPlain(String contentType) {
+		return contentType.contains("TEXT/PLAIN");
+	}
 
 	private boolean isSimpleType(String contentType) {
 		if(contentType.contains("TEXT/HTML") ||
@@ -111,7 +108,7 @@ public class MessageRendererService extends Service<Object>{
 
 	}
 	
-	private void displayDemoMessage() {
+	private String getDemoMessage() {
 		String content = stringBuffer.toString();
 		content = content.replaceAll("\\<.*?\\>", "");
 		content = content.replaceAll("[.].*[{].*[}]", "");
@@ -125,7 +122,10 @@ public class MessageRendererService extends Service<Object>{
 		content = content.replaceAll("[a-z]+[{].*[}]","");
 		content = content.replaceAll("[*]\\h*[{].*[}]","");
 		content = content.strip();
-		textArea.setText(content);
+		if (content.length() > 100)content = content.substring(0, 100);
+		if (content == null)content = "";
+		
+		return content;
 
 	}
 }

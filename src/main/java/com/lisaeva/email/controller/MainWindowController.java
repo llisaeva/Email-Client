@@ -1,23 +1,23 @@
 package com.lisaeva.email.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.lisaeva.email.model.EmailMessage;
+import javax.mail.MessagingException;
+
 import com.lisaeva.email.controller.service.EmailSendingService;
-import com.lisaeva.email.controller.service.FolderUpdateService;
 import com.lisaeva.email.controller.service.MessageRendererService;
-import com.lisaeva.email.model.EmailCell;
-import com.lisaeva.email.model.EmailManager;
-import com.lisaeva.email.model.FolderTreeItem;
 import com.lisaeva.email.model.Attachment;
 import com.lisaeva.email.model.AttachmentCell;
-import com.lisaeva.email.model.EmailAccount;
+import com.lisaeva.email.model.EmailCell;
+import com.lisaeva.email.model.EmailManager;
+import com.lisaeva.email.model.EmailMessage;
+import com.lisaeva.email.model.FolderTreeItem;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -63,9 +63,11 @@ public class MainWindowController extends BaseController implements Initializabl
 	 
 	 private static SimpleDateFormat dateFormat = new SimpleDateFormat("M'/'d'/'YYYY   H:mm");
 	 private MessageRendererService messageRendererService;
+	 private EmailManager emailManager;
 	 
 	 public MainWindowController(EmailManager emailManager) {
 		 super("/fxml/main.fxml", emailManager);
+		 this.emailManager = emailManager;
 	 }
 
 	@Override
@@ -86,15 +88,12 @@ public class MainWindowController extends BaseController implements Initializabl
 			
 		});
 		
-		ObservableList<Attachment> ats = FXCollections.observableArrayList();
-		for (int i = 0; i < 9; i++)
-			ats.add(new Attachment());
-		attachmentList.getItems().addAll(ats);
 		
+		//
+		//
+		attachmentList.setVisible(false);
 		messageViewShort.setVisible(false);
 		footerDiv.setVisible(false);
-		
-		
 		
 		setUpFolderSelection();
 		setUpMessageRendererService();
@@ -118,7 +117,7 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     void composeSendPressed() {
     	EmailSendingService emailSenderService = new EmailSendingService(
-				getEmailManager().getEmailAccount(),
+				emailManager.getEmailAccount(),
 				composeTitle.getText(),
 				composeTo.getText(),
 				htmlEditor.getHtmlText(),
@@ -131,13 +130,13 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 	
 	private void setUpFolderSelection() {
-		folderSelection.setRoot(getEmailManager().getFolderRoot());
+		folderSelection.setRoot(emailManager.getFolderRoot());
 		folderSelection.setShowRoot(false);
 		folderSelection.setOnMouseClicked(e -> {
 			FolderTreeItem item = (FolderTreeItem)folderSelection.getSelectionModel().getSelectedItem();
 			
 			if(item != null) {
-				getEmailManager().setSelectedFolder(item);
+				emailManager.setSelectedFolder(item);
 				emailSelection.setItems(item.getEmailMessages());
 
 				
@@ -153,25 +152,44 @@ public class MainWindowController extends BaseController implements Initializabl
 	
 	private void setUpMessageSelection() {
 
-		emailSelection.setOnMouseClicked(event -> {
-			if (!composePane.isVisible())
-				setMessageViewVisible(true);
+		emailSelection.setOnMouseClicked(event -> {				
 			EmailMessage emailMessage = emailSelection.getSelectionModel().getSelectedItem();
-			
 			if(emailMessage != null) {
-				getEmailManager().setSelectedMessage(emailMessage);
-//				if (!emailMessage.isRead()) {
-//					getEmailManager().setRead();
-//				}
-				messageRendererService.setEmailMessage(emailMessage);
-				messageRendererService.restart();
-				messageSenderName.setText(emailMessage.getSender());
-				messageTitle.setText(emailMessage.getTitle());
-				messageDate.setText(dateFormat.format(emailMessage.getDate()));
-				
-			}
-		});
-		
+				emailManager.setSelectedMessage(emailMessage);
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						if (!composePane.isVisible())setMessageViewVisible(true);
+						
+						if (emailMessage.hasAttachment()) {
+						try { loadAttachments(); } 
+						catch (MessagingException e) { e.printStackTrace(); }
+						}
+						
+//						if (!emailMessage.isRead()) {
+//							getEmailManager().setRead();
+//						}
+						messageRendererService.setEmailMessage(emailMessage);
+						messageRendererService.restart();
+						messageSenderName.setText(emailMessage.getSender());
+						messageTitle.setText(emailMessage.getTitle());
+						messageDate.setText(dateFormat.format(emailMessage.getDate()));			
+					};			
+			});
+		}});	
+	}
+	
+	private void loadAttachments() throws MessagingException {
+		EmailMessage selected = emailManager.getSelectedMessage();
+		if (selected != null && selected.hasAttachment()) {
+			ObservableList<Attachment> attachments = FXCollections.observableArrayList(selected.getAttachments());
+			attachmentList.getItems().clear();
+			attachmentList.getItems().addAll(attachments);
+			attachmentList.setVisible(true);
+		} else {
+			attachmentList.setVisible(false);
+
+		}
 	}
 	
 	private void setMessageViewVisible(boolean b) {
@@ -183,4 +201,23 @@ public class MainWindowController extends BaseController implements Initializabl
 		composePane.setVisible(b);
 		defaultMessageViewBG.setVisible(!b);
 	}
+	
+//	private void setMessageView(String type) {
+//		
+//		switch(type) {
+//			case "short" : 
+//				messageViewShort.setVisible(true);
+//				messageViewLong.setVisible(false);
+//				break;
+//			case "long" :
+//				messageViewShort.setVisible(false);
+//				messageViewLong.setVisible(true);
+//				break;
+//		}
+//	}
+//	
+//	private WebView getMessageView() {
+//		if(messageViewShort.isVisible())return messageViewShort;
+//		else return messageViewLong;
+//	}
 }

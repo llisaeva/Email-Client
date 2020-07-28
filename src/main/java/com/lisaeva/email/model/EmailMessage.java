@@ -1,12 +1,10 @@
 package com.lisaeva.email.model;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -17,9 +15,9 @@ public class EmailMessage {
     private SimpleObjectProperty<Date> date;
     private SimpleStringProperty title;
     private boolean selected = false;
-    private boolean hasAttachment;
     private Message message;
-    private List<MimeBodyPart> attachmentList = new ArrayList<MimeBodyPart>();
+    private String demoMessage;
+    private List<Attachment> attachmentList = new ArrayList<Attachment>();
     
 	public EmailMessage(String sender, Date date, String title, Message message) {
 		this.sender = new SimpleStringProperty(sender);
@@ -28,47 +26,27 @@ public class EmailMessage {
 		this.message = message;
 	}
 
-	public String getSender() {
-		return sender.get();
-	}
-
-	public Date getDate() {
-		return date.get();
-	}
-
-	public String getTitle() {
-		return title.get();
-	}
-
-	public Message getMessage() {
-		return message;
-	}
-
-	public boolean isSelected() {
-		return selected;
-	}
+	public String getSender() { return sender.get(); }
+	public Date getDate() { return date.get(); }
+	public String getTitle() { return title.get(); }
+	public Message getMessage() { return message; }
+	public String getDemoMessage() { return demoMessage; }
+	public List<Attachment> getAttachments() { return attachmentList; }
+	public void setDemoMessage(String demo) { this.demoMessage = demo; }
+	public void setSelected(boolean b) { selected = b; }
+	public boolean isSelected() { return selected; }
+	public boolean hasAttachment() { return !attachmentList.isEmpty(); }
 	
-	public void setSelected(boolean b) {
-		selected = b;
+	public synchronized void addAttachment(MimeBodyPart mbp) {
+		Attachment attachment = new Attachment(mbp);
+		if (attachment.getName() != null) {
+			if (!attachmentList.isEmpty()) {
+				for (Attachment a : attachmentList) {
+					if (a == null || !a.getName().equals(attachment.getName()))continue;
+					else {return;}
+				}
+			}
+			attachmentList.add(attachment);
+		}
 	}
-
-	public boolean isHasAttachment() {
-		return hasAttachment;
-	}
-	
-	public String getDemoMessage() throws IOException, MessagingException {
-		return message.getContent().toString();
-	}
-
-	public void addAttachment(MimeBodyPart mbp) {
-		attachmentList.add(mbp);
-		
-	}
-	
-	
-	
-	
-	
-    
-    
 }

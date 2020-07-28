@@ -42,11 +42,8 @@ public class IconResolver {
 		if (imageView != null) {
 			imageView.setFitWidth(16);
 			imageView.setFitHeight(16);
-			return imageView;
 		}
-		
-		return null;
-		
-	}
-	
+		return imageView;
+
+	}	
 }

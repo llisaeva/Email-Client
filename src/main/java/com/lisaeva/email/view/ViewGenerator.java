@@ -5,12 +5,8 @@ import java.io.InputStream;
 
 import com.lisaeva.email.controller.BaseController;
 import com.lisaeva.email.controller.MainWindowController;
-import com.lisaeva.email.model.EmailCell;
 import com.lisaeva.email.model.EmailManager;
 
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,11 +27,6 @@ public class ViewGenerator {
 
 		stage.show();
 	}
-	
-	
-	
-	
-	
 	
 	private static Scene initializeScene(BaseController controller) {
 		FXMLLoader fxmlLoader = new FXMLLoader(ViewGenerator.class.getResource(controller.getFXML()));

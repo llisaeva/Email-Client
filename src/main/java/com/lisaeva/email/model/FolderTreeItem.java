@@ -26,14 +26,11 @@ public class FolderTreeItem extends TreeItem<String>{
 		this.folder = folder;
 	}
 	
-	public Folder getFolder() {return folder;}
-	public String toString() {return name;}
+	public Folder getFolder() { return folder; }
+	public ObservableList<EmailMessage> getEmailMessages() { return emails; }
+	public String toString() { return name; }
 	
-	private void addEmail(EmailMessage email) {
-		
-		emails.add(email);
-		
-	}
+	private void addEmail(EmailMessage email) { emails.add(email); }
 	
 	public void addEmail(Message message) {
 //		boolean messageIsRead = message.getFlags().contains(Flags.Flag.SEEN);
@@ -59,10 +56,6 @@ public class FolderTreeItem extends TreeItem<String>{
 		return email;
 	}
 	
-	public ObservableList<EmailMessage> getEmailMessages() {
-		return emails;
-	}
-
 	public void addEmailToTop(Message message) {
 		EmailMessage emailMessage = fetchMessage(message);
 		emails.add(0, emailMessage);
@@ -70,8 +63,6 @@ public class FolderTreeItem extends TreeItem<String>{
 	}
 	
 }
-
-
 //message.getRecipients(MimeMessage.RecipientType.TO)[0].toString(),
 //message.getSize(),
 //

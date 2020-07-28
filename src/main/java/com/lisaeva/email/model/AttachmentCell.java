@@ -2,8 +2,6 @@ package com.lisaeva.email.model;
 
 import java.io.IOException;
 
-import com.lisaeva.email.controller.service.MessageRendererService;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContentDisplay;
@@ -16,9 +14,7 @@ public class AttachmentCell extends ListCell<Attachment>{
 	  @FXML private Label attachmentName;
 	  @FXML private ImageView attachmentImg;
 	  
-	  public AttachmentCell() {
-		  loadFXML();
-	  }
+	  public AttachmentCell() { loadFXML(); }
 	  
 	  private void loadFXML() {
 			try {
@@ -42,9 +38,9 @@ public class AttachmentCell extends ListCell<Attachment>{
 	        }
 	        else {  	
 	            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-//	            attachmentName.setText("AAAAA.jpg");
+	            attachmentName.setText(this.getItem().getName());
+	            attachmentImg.setImage(this.getItem().getThumbnail());
 
 	        }
 	    }
-	
 }
