@@ -1,5 +1,6 @@
 package com.lisaeva.email.model;
 
+import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -7,6 +8,7 @@ import javax.mail.MessagingException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
+import javafx.scene.input.MouseEvent;
 
 public class FolderTreeItem extends TreeItem<String>{
 	
@@ -17,6 +19,10 @@ public class FolderTreeItem extends TreeItem<String>{
 	public FolderTreeItem() {
 		super("");
 		this.name = "";
+		
+//		this.addEventHandler(new MouseEvent() {}, eventHandler);
+		
+		
 	}
 	
 	public FolderTreeItem(Folder folder) {
@@ -33,9 +39,8 @@ public class FolderTreeItem extends TreeItem<String>{
 	private void addEmail(EmailMessage email) { emails.add(email); }
 	
 	public void addEmail(Message message) {
-//		boolean messageIsRead = message.getFlags().contains(Flags.Flag.SEEN);
+		
 		EmailMessage email = fetchMessage(message);
-//		System.out.println(email.getTitle());
 		addEmail(email);
 //		if(!messageIsRead)
 //			incrementMessagesCount();
@@ -44,15 +49,16 @@ public class FolderTreeItem extends TreeItem<String>{
 	
 	private EmailMessage fetchMessage(Message message) {
 		EmailMessage email = null;
+		
 		try {
+			boolean messageIsRead = message.getFlags().contains(Flags.Flag.SEEN);
 			email = new EmailMessage(
 				message.getFrom()[0].toString(),
 				message.getSentDate(),
 				message.getSubject(),
-				message);
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
+				message,
+				messageIsRead);
+		} catch (MessagingException e) { e.printStackTrace(); }
 		return email;
 	}
 	
@@ -61,6 +67,7 @@ public class FolderTreeItem extends TreeItem<String>{
 		emails.add(0, emailMessage);
 		
 	}
+	
 	
 }
 //message.getRecipients(MimeMessage.RecipientType.TO)[0].toString(),

@@ -18,12 +18,15 @@ public class EmailMessage {
     private Message message;
     private String demoMessage;
     private List<Attachment> attachmentList = new ArrayList<Attachment>();
+	private boolean attachmentLoaded = false;
+	private boolean isRead;
     
-	public EmailMessage(String sender, Date date, String title, Message message) {
+	public EmailMessage(String sender, Date date, String title, Message message, boolean isRead) {
 		this.sender = new SimpleStringProperty(sender);
 		this.date = new SimpleObjectProperty<Date>(date);
 		this.title = new SimpleStringProperty(title);
 		this.message = message;
+		this.isRead = isRead;
 	}
 
 	public String getSender() { return sender.get(); }
@@ -32,6 +35,8 @@ public class EmailMessage {
 	public Message getMessage() { return message; }
 	public String getDemoMessage() { return demoMessage; }
 	public List<Attachment> getAttachments() { return attachmentList; }
+	public boolean isAttachmentLoaded() { return attachmentLoaded; }
+	public void setAttachmentLoaded() { attachmentLoaded = true; }
 	public void setDemoMessage(String demo) { this.demoMessage = demo; }
 	public void setSelected(boolean b) { selected = b; }
 	public boolean isSelected() { return selected; }
@@ -48,5 +53,13 @@ public class EmailMessage {
 			}
 			attachmentList.add(attachment);
 		}
+	}
+
+	public void setRead(boolean b) {
+		isRead = b;
+	}
+
+	public boolean isRead() {
+		return isRead;
 	}
 }

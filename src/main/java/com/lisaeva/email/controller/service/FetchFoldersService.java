@@ -46,21 +46,7 @@ public class FetchFoldersService extends Service<Void>{
 	private void handleFolders(Folder[] folders, FolderTreeItem foldersRoot) throws MessagingException {
 		for(Folder folder: folders) {
 			folderList.add(folder);
-			folder.addMessageCountListener(new MessageCountListener(){
-
-				@Override
-				public void messagesAdded(MessageCountEvent e) {
-					
-					
-				}
-
-				@Override
-				public void messagesRemoved(MessageCountEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-			});
+//			System.out.println(folder.getName());
 			FolderTreeItem folderTreeItem = new FolderTreeItem(folder);
 			folderTreeItem.setGraphic(IconResolver.getIconForFolder(folder.getName()));
 			foldersRoot.getChildren().add(folderTreeItem);
@@ -128,4 +114,5 @@ public class FetchFoldersService extends Service<Void>{
 		};
 		fetchMessagesService.start();
 	}
+
 }

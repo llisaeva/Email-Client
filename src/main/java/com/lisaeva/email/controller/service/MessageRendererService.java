@@ -8,43 +8,38 @@ import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.internet.MimeBodyPart;
 
+import com.lisaeva.email.model.Attachment;
 import com.lisaeva.email.model.EmailMessage;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 
 public class MessageRendererService extends Service<Object>{
 	private EmailMessage emailMessage;
-	private WebEngine webEngine;
-	private TextArea textArea;
 	private StringBuffer stringBuffer;
 
-	public MessageRendererService(WebEngine webEngine) {
-		this.webEngine = webEngine;
-		this.stringBuffer = new StringBuffer();
-		this.setOnSucceeded(event -> {
-			displayMessage();
-		});
+	public MessageRendererService(StringBuffer stringBuffer) {
+		this.stringBuffer = stringBuffer;
 	}
 	
-	public MessageRendererService() {
+	public MessageRendererService(EmailMessage email) {
+		this.emailMessage = email;
 		this.stringBuffer = new StringBuffer();
 	}
 
 	@Override
 	protected Task<Object> createTask() {
-		try {
-			loadMessage();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		try { loadMessage(); } 
+		catch (Exception e) { e.printStackTrace(); }
 		return new Task<Object>() {
 			@Override
-			protected Object call() throws Exception {
-				return null;
-			}
+			protected Object call() throws Exception { return null; }
 		};
 	}
 	
@@ -57,8 +52,7 @@ public class MessageRendererService extends Service<Object>{
 		} else if (isMultipartType(contentType)) {
 			Multipart multipart = (Multipart) message.getContent();
 			loadMultipart(multipart, stringBuffer);
-		}
-		emailMessage.setDemoMessage(getDemoMessage());
+		} emailMessage.setDemoMessage(getDemoMessage());
 	}
 	
 	private void loadMultipart(Multipart multipart, StringBuffer stringBuffer) throws MessagingException, IOException {
@@ -72,7 +66,7 @@ public class MessageRendererService extends Service<Object>{
 				loadMultipart(multipart2,stringBuffer); 
 			} else if (!isTextPlain(contentType)) {				
 				MimeBodyPart mbp = (MimeBodyPart) bodyPart;
-				emailMessage.addAttachment(mbp);
+				if (!emailMessage.isAttachmentLoaded())emailMessage.addAttachment(mbp);
 			}
 		}
 	}
@@ -86,26 +80,16 @@ public class MessageRendererService extends Service<Object>{
 		   contentType.contains("mixed") ||
 		   contentType.contains("text")) {
 			return true;
-		} else {
-			return false;
-		}
+		} else return false;
 	}
 	
 	private boolean isMultipartType(String contentType) {
-		if (contentType.contains("multipart")) {
-			return true;
-		} else {
-			return false;
-		}
+		if (contentType.contains("multipart"))return true;
+		else return false;
 	}
 	
 	public void setEmailMessage(EmailMessage emailMessage) {
 		this.emailMessage = emailMessage;
-	}
-
-	private void displayMessage() {
-		webEngine.loadContent(stringBuffer.toString());
-
 	}
 	
 	private String getDemoMessage() {
@@ -128,4 +112,10 @@ public class MessageRendererService extends Service<Object>{
 		return content;
 
 	}
+	
+	public StringBuffer getStringBuffer() {
+		return stringBuffer;
+	}
+	
+	
 }

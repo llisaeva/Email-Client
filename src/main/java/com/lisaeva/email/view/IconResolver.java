@@ -9,41 +9,36 @@ public class IconResolver {
 	public static Node getIconForFolder(String name) {
 		
 		String lowerCaseFolderName = name.toLowerCase();
-		ImageView imageView = null;
+		
+		ImageView imageView = new ImageView();
+		imageView.setFitWidth(16);
+		imageView.setFitHeight(16);
 		
 		try {
-			if(lowerCaseFolderName.contains("gmail")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/at.png")));
-			} else if (lowerCaseFolderName.contains("inbox")){
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/inbox.png")));
-			} else if (lowerCaseFolderName.contains("all")){
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/mail.png")));
-			} else if (lowerCaseFolderName.contains("sent")){
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/sent.png")));
-			} else if (lowerCaseFolderName.contains("spam")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/spam.png")));
-			} else if (lowerCaseFolderName.contains("important")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/flag.png")));
-			} else if (lowerCaseFolderName.contains("draft")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/draft.png")));
-			} else if (lowerCaseFolderName.contains("star")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/star-folder.png")));
-			} else if (lowerCaseFolderName.contains("trash")) {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/trash-folder.png")));
-			} else {
-				imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/mail.png")));
-			}
+			if(lowerCaseFolderName.contains("gmail"))imageView.setId("gmail-folder");			
+			else if (lowerCaseFolderName.contains("inbox"))imageView.setId("inbox-folder");
+			else if (lowerCaseFolderName.contains("all"))imageView.setId("all-folder");
+			else if (lowerCaseFolderName.contains("sent"))imageView.setId("sent-folder");
+			else if (lowerCaseFolderName.contains("spam"))imageView.setId("spam-folder");
+			else if (lowerCaseFolderName.contains("important"))imageView.setId("important-folder");
+			else if (lowerCaseFolderName.contains("draft"))imageView.setId("draft-folder");
+			else if (lowerCaseFolderName.contains("star"))imageView.setId("star-folder");
+			else if (lowerCaseFolderName.contains("trash"))imageView.setId("trash-folder");
+			else imageView.setId("mail-folder");
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) { e.printStackTrace(); return null; }		
+
+		return imageView;
+	}	
+	
+	public static Node getIcon(String name) {
+		ImageView imageView = new ImageView();
+		if(name.contains("paper-clip")) {
+//			imageView = new ImageView(new Image(IconResolver.class.getResourceAsStream("/img/default/paper-clip.png")));
+			imageView.setFitWidth(23);
+			imageView.setFitHeight(23);
 		}
 		
-		if (imageView != null) {
-			imageView.setFitWidth(16);
-			imageView.setFitHeight(16);
-		}
 		return imageView;
-
-	}	
+	}
 }
