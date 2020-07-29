@@ -2,10 +2,8 @@ package com.lisaeva.email.model;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
-
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.scene.image.Image;
 
 public class Attachment {
 	
@@ -16,9 +14,7 @@ public class Attachment {
 	public Attachment(MimeBodyPart mbp) {
 		this.mbp = mbp;
 		name = getName();
-		
 		downloadPath = EmailManager.getDownloadPath() + name;
-		
 	}
 
 	public MimeBodyPart getMBP() { return mbp; }
@@ -33,7 +29,6 @@ public class Attachment {
 
 	public void downloadAttachment() {
 			Service<Void> service = new Service<>() {
-
 				@Override
 				protected Task<Void> createTask() {
 					return new Task<Void>() {
@@ -46,6 +41,5 @@ public class Attachment {
 				}
 			};
 			service.start();
-		
 	}
 }

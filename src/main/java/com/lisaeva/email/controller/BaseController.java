@@ -4,7 +4,6 @@ import com.lisaeva.email.model.EmailManager;
 
 public class BaseController {
 	
-	
 	private String fxml;
 	private EmailManager emailManager;
 
@@ -13,13 +12,6 @@ public class BaseController {
 		this.emailManager = emailManager;
 	}
 	
-	public String getFXML() {
-		return fxml;
-	}
-	
-	public EmailManager getEmailManager() {
-		return emailManager;
-	}
-
-	
+	public String getFXML() { return fxml; }
+	public EmailManager getEmailManager() { return emailManager; }
 }

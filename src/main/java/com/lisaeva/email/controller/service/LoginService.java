@@ -6,7 +6,6 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Store;
-
 import com.lisaeva.email.model.EmailAccount;
 
 public class LoginService {
@@ -18,8 +17,7 @@ public class LoginService {
 		login();
 	}
 	
-	private void login() {
-		
+	private void login() {		
 		Authenticator authenticator = new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -34,13 +32,8 @@ public class LoginService {
 			Store store = session.getStore("imaps");
 			store.connect(emailAccount.getProperties().getProperty("incomingHost"), 
 						  emailAccount.getAddress(), 
-						  emailAccount.getPassword());
-			
+						  emailAccount.getPassword());	
 			emailAccount.setStore(store);
-			
-			
-
-			
 			
 //			Folder inbox = store.getFolder("INBOX");
 //			 // open the INBOX folder
@@ -55,16 +48,13 @@ public class LoginService {
 //			 subject = m.getSubject(); 
 //			 System.out.println(subject);
 //			 m = inbox.getMessage(4);
-//			 subject = m.getSubject(); 
-//			 
+//			 subject = m.getSubject();  
 //			 System.out.println(subject);
+			
 		} catch (NoSuchProviderException e) {
-
 			e.printStackTrace();
 		} catch (MessagingException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
 }

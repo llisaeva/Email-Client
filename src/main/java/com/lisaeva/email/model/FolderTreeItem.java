@@ -4,11 +4,9 @@ import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
-import javafx.scene.input.MouseEvent;
 
 public class FolderTreeItem extends TreeItem<String>{
 	
@@ -19,10 +17,6 @@ public class FolderTreeItem extends TreeItem<String>{
 	public FolderTreeItem() {
 		super("");
 		this.name = "";
-		
-//		this.addEventHandler(new MouseEvent() {}, eventHandler);
-		
-		
 	}
 	
 	public FolderTreeItem(Folder folder) {
@@ -31,15 +25,8 @@ public class FolderTreeItem extends TreeItem<String>{
 		this.name = folder.getName();
 		this.folder = folder;
 	}
-	
-	public Folder getFolder() { return folder; }
-	public ObservableList<EmailMessage> getEmailMessages() { return emails; }
-	public String toString() { return name; }
-	
-	private void addEmail(EmailMessage email) { emails.add(email); }
-	
+
 	public void addEmail(Message message) {
-		
 		EmailMessage email = fetchMessage(message);
 		addEmail(email);
 //		if(!messageIsRead)
@@ -49,7 +36,6 @@ public class FolderTreeItem extends TreeItem<String>{
 	
 	private EmailMessage fetchMessage(Message message) {
 		EmailMessage email = null;
-		
 		try {
 			boolean messageIsRead = message.getFlags().contains(Flags.Flag.SEEN);
 			email = new EmailMessage(
@@ -65,10 +51,12 @@ public class FolderTreeItem extends TreeItem<String>{
 	public void addEmailToTop(Message message) {
 		EmailMessage emailMessage = fetchMessage(message);
 		emails.add(0, emailMessage);
-		
 	}
 	
-	
+	public Folder getFolder() { return folder; }
+	public ObservableList<EmailMessage> getEmailMessages() { return emails; }
+	public String toString() { return name; }
+	private void addEmail(EmailMessage email) { emails.add(email); }	
 }
 //message.getRecipients(MimeMessage.RecipientType.TO)[0].toString(),
 //message.getSize(),

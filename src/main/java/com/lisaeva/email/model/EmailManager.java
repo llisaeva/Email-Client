@@ -1,8 +1,6 @@
 package com.lisaeva.email.model;
 
 import javax.mail.Flags;
-import javax.mail.Folder;
-
 import com.lisaeva.email.controller.service.FetchFoldersService;
 import com.lisaeva.email.controller.service.FolderUpdateService;
 import com.lisaeva.email.controller.service.LoginService;
@@ -16,7 +14,6 @@ public class EmailManager {
 	private EmailMessage selectedMessage;
 	private EmailAccount emailAccount;
 	private FolderUpdateService folderUpdateService;
-	private Folder inbox;
 	
 	public void login(String account, String password) {
 		emailAccount = new EmailAccount(account, password);
@@ -38,21 +35,14 @@ public class EmailManager {
 	public FolderTreeItem getSelectedFolder() { return selectedFolder; }
 	public EmailAccount getEmailAccount() { return emailAccount; }	
 	
-	public void setInbox(Folder folder) { inbox = folder; }
-	
 	public void deleteSelectedMessage() {
 		try {
 			selectedMessage.getMessage().setFlag(Flags.Flag.DELETED, true);
 //			selectedFolder.getFolder().setFlags(selectedMessage.getMessage(), Flags.Flag.DELETED, true);
 			selectedMessage.getMessage().getFolder().expunge();
 			selectedFolder.getEmailMessages().remove(selectedMessage);
-			
 //			while (!folder.getName().toLowerCase().contains("inbox"))folder = folder.getParent();
-//			folder.expunge();
-			
-			
+//			folder.expunge();	
 		} catch (Exception e) { e.printStackTrace(); }	
 	}
-	
-	
 }

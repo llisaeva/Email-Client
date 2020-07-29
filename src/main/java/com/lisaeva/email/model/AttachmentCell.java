@@ -1,10 +1,8 @@
 package com.lisaeva.email.model;
 
 import java.io.IOException;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
-
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -36,15 +34,14 @@ public class AttachmentCell extends ListCell<Attachment>{
 		        e.printStackTrace();
 		    }		
 	}
-	  /*FIX ATTACHMENTS*/
+
 	  @Override
 	    protected void updateItem(Attachment item, boolean empty) {
 	        super.updateItem(item, empty);
 	        if(empty) {
 	            setText(null);
 	            setContentDisplay(ContentDisplay.TEXT_ONLY);
-	        }
-	        else {  	
+	        } else {  	
 	            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 	            String name = this.getItem().getName();
 	            attachmentName.setText(name);
@@ -53,7 +50,6 @@ public class AttachmentCell extends ListCell<Attachment>{
 	            
 	            try {
 	    			if (mbp.getContentType().contains("IMAGE")) {
-	    				
 	    				Service<Void> addImgService = new Service<Void>() {
 	    					@Override
 	    					protected Task<Void> createTask() {
@@ -62,16 +58,13 @@ public class AttachmentCell extends ListCell<Attachment>{
 	    							protected Void call() throws Exception {
 	    								thumbnail = new Image(mbp.getInputStream());
 	    								return null;
-	    					}};}};
-	    					addImgService.setOnSucceeded(e -> {
-	    						if (thumbnail != null)attachmentImg.setImage(thumbnail);
-	    					});
-	    					addImgService.start();	
+	    							}};
+	    					}
+	    				};
+	    				addImgService.setOnSucceeded(e -> { if (thumbnail != null)attachmentImg.setImage(thumbnail); });
+	    				addImgService.start();	
 	    			}
 	    		} catch (MessagingException e) { e.printStackTrace(); }
-	            
-	            
-
 	        }
 	    }
 }

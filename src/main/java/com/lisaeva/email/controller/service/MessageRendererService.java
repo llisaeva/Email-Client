@@ -1,32 +1,20 @@
 package com.lisaeva.email.controller.service;
 
 import java.io.IOException;
-
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.internet.MimeBodyPart;
-
-import com.lisaeva.email.model.Attachment;
 import com.lisaeva.email.model.EmailMessage;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.web.WebEngine;
 
 public class MessageRendererService extends Service<Object>{
 	private EmailMessage emailMessage;
 	private StringBuffer stringBuffer;
 
-	public MessageRendererService(StringBuffer stringBuffer) {
-		this.stringBuffer = stringBuffer;
-	}
+	public MessageRendererService(StringBuffer stringBuffer) { this.stringBuffer = stringBuffer; }
 	
 	public MessageRendererService(EmailMessage email) {
 		this.emailMessage = email;
@@ -88,16 +76,11 @@ public class MessageRendererService extends Service<Object>{
 		else return false;
 	}
 	
-	public void setEmailMessage(EmailMessage emailMessage) {
-		this.emailMessage = emailMessage;
-	}
-	
 	private String getDemoMessage() {
 		String content = stringBuffer.toString();
 		content = content.replaceAll("\\<.*?\\>", "");
 		content = content.replaceAll("[.].*[{].*[}]", "");
 		content = content.replaceAll("\\&nbsp;", " ");
-		
 		content = content.replaceAll("[/]", "");
 		content = content.replaceAll("\s+|\\v+|\\h+", " ");
 		content = content.replaceAll("[<][!][-][-].*[-][-][>]", "");
@@ -108,14 +91,10 @@ public class MessageRendererService extends Service<Object>{
 		content = content.strip();
 		if (content.length() > 100)content = content.substring(0, 100);
 		if (content == null)content = "";
-		
 		return content;
-
 	}
 	
-	public StringBuffer getStringBuffer() {
-		return stringBuffer;
-	}
+	public StringBuffer getStringBuffer() { return stringBuffer; }
 	
-	
+	public void setEmailMessage(EmailMessage emailMessage) { this.emailMessage = emailMessage; }	
 }

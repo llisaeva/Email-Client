@@ -3,7 +3,6 @@ package com.lisaeva.email.controller.service;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -15,9 +14,7 @@ import javax.mail.Transport;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-
 import com.lisaeva.email.model.EmailAccount;
-
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
@@ -34,8 +31,7 @@ public class EmailSendingService extends Service<Void> {
 		this.subject = subject;
 		this.recipient = recipient;
 		this.content = content;
-		this.attachments = list;
-		
+		this.attachments = list;	
 	}
 
 	@Override
@@ -44,18 +40,15 @@ public class EmailSendingService extends Service<Void> {
 			@Override
 			protected Void call() throws Exception {
 				try {
-					// Create the message
 					MimeMessage mimeMessage = new MimeMessage(emailAccount.getSession());
 					mimeMessage.setFrom(emailAccount.getAddress());
 					mimeMessage.addRecipients(Message.RecipientType.TO, recipient);
 					mimeMessage.setSubject(subject);
-					// Set the content
 					Multipart multipart = new MimeMultipart();
 					BodyPart messageBodyPart = new MimeBodyPart();
 					messageBodyPart.setContent(content, "text/html");
 					multipart.addBodyPart(messageBodyPart);
 					mimeMessage.setContent(multipart);
-					// Adding the attachments:
 					if(attachments.size()>0) {
 						for (File file: attachments) {
 							MimeBodyPart mimeBodyPart = new MimeBodyPart();
@@ -65,7 +58,6 @@ public class EmailSendingService extends Service<Void> {
 							multipart.addBodyPart(mimeBodyPart);
 						}
 					}
-					// Sending the message:
 					Transport transport = emailAccount.getSession().getTransport();
 					transport.connect(
 							emailAccount.getProperties().getProperty("outgoingHost"),
@@ -77,11 +69,9 @@ public class EmailSendingService extends Service<Void> {
 					e.printStackTrace();
 				} catch (Exception e) {
 					e.printStackTrace();
-
 				}
 				return null; 
 			}
 		};
 	}
-	
 }

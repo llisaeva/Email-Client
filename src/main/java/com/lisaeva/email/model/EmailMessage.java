@@ -3,10 +3,8 @@ package com.lisaeva.email.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.mail.Message;
 import javax.mail.internet.MimeBodyPart;
-
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -39,6 +37,8 @@ public class EmailMessage {
 	public void setAttachmentLoaded() { attachmentLoaded = true; }
 	public void setDemoMessage(String demo) { this.demoMessage = demo; }
 	public void setSelected(boolean b) { selected = b; }
+	public void setRead(boolean b) { isRead = b; }
+	public boolean isRead() { return isRead; }
 	public boolean isSelected() { return selected; }
 	public boolean hasAttachment() { return !attachmentList.isEmpty(); }
 	
@@ -53,13 +53,5 @@ public class EmailMessage {
 			}
 			attachmentList.add(attachment);
 		}
-	}
-
-	public void setRead(boolean b) {
-		isRead = b;
-	}
-
-	public boolean isRead() {
-		return isRead;
 	}
 }

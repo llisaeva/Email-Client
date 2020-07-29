@@ -14,5 +14,4 @@ module com.lisaeva.email {
 	opens com.lisaeva.email.controller.service;
 	opens com.lisaeva.email to javafx.fxml, javafx.graphics;
 	opens com.lisaeva.email.model to javafx.fxml;
-
 }

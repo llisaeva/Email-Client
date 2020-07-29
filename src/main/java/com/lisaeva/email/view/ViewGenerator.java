@@ -2,11 +2,9 @@ package com.lisaeva.email.view;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 import com.lisaeva.email.controller.BaseController;
 import com.lisaeva.email.controller.MainWindowController;
 import com.lisaeva.email.model.EmailManager;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,7 +22,6 @@ public class ViewGenerator {
 		BaseController controller = new MainWindowController(em);
 		Stage stage = new Stage();
 		stage.setScene(initializeScene(controller));
-
 		stage.show();
 	}
 	
@@ -32,17 +29,10 @@ public class ViewGenerator {
 		FXMLLoader fxmlLoader = new FXMLLoader(ViewGenerator.class.getResource(controller.getFXML()));
 		fxmlLoader.setController(controller);
 		Parent parent;
-		try {
-			parent = fxmlLoader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		
+		try { parent = fxmlLoader.load(); } 
+		catch (IOException e) { e.printStackTrace(); return null; }
 		Scene scene = new Scene(parent);
-		
 		updateStyles(scene);
-		
 		return scene;	
 	}
 	
@@ -58,9 +48,6 @@ public class ViewGenerator {
 				Font.loadFont(in, 1);
 				Font.loadFont(in2, 1);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		} catch (IOException e) { e.printStackTrace(); }
 	}
-	
 }
