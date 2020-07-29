@@ -48,7 +48,7 @@ public class FetchFoldersService extends Service<Void>{
 			folderList.add(folder);
 //			System.out.println(folder.getName());
 			FolderTreeItem folderTreeItem = new FolderTreeItem(folder);
-			folderTreeItem.setGraphic(IconResolver.getIconForFolder(folder.getName()));
+			folderTreeItem.setGraphic(IconResolver.getIcon(folder.getName()));
 			foldersRoot.getChildren().add(folderTreeItem);
 //			System.out.println("added folder");
 			foldersRoot.setExpanded(true);

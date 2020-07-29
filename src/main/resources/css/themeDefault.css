@@ -1,4 +1,4 @@
-/*** GENERAL ***/
+/*** Colors ***/
 
 * {
 	mid-blue-color: #212d40;
@@ -6,11 +6,13 @@
 	cell-unselected-color: #f2f2f2;
 	folder-selected-color: #495362;
 	light-grey-color: #cccccc;
+	mid-grey-color: #e0e0e0;
 	dark-grey-color: #999999;
 	white-color: white;
 	teal-color: #98c0bb;
-	
 }
+
+/*** Text ***/
 
 @font-face{
 	font-family: 'Myriad Pro';
@@ -22,13 +24,33 @@
     src: url("../font/Myriad_Pro_Light_SemiCondensed.otf");
 }
 
-/*** EMAIL SELECTION ***/
+.text { -fx-text-fill: black; }
+.font-rockwell { -fx-font-family: 'Rockwell'; }
+.font-myriad { -fx-font-family: 'Myriad Pro'; }
+.font-bold { -fx-font-weight: bold; }
+.font-grey { -fx-text-fill: dark-grey-color; }
+.font-white { -fx-text-fill: white-color; }
 
+
+/*** General ***/
+
+#main-window-pane { -fx-background-color: white-color; }
+#account-pane { -fx-background-color: dark-blue-color; }
+#compose-key-pane { -fx-background-color: mid-blue-color; }
+#compose-key { -fx-background-color: teal-color; }
+
+/*** Email Selection ***/
+
+.list-view .scroll-bar:vertical,
+.list-view .scroll-bar:horizontal {
+    -fx-scale-x: 0;
+    -fx-opacity: 0;
+    -fx-padding:-7;
+}
 #email-cell-view, #email-cell-view:selected {
 	-fx-focus-color: transparent;
 	-fx-faint-focus-color: transparent;
 }
-
 .email-cell {
 	-fx-graphic-text-gap: 0;
 	-fx-padding: 0px;
@@ -36,66 +58,60 @@
 	-fx-border-color: light-grey-color, light-grey-color, light-grey-color, transparent;
 	-fx-border-width: 0.5, 0.5, 0.5, 0;
 }
-
-.email-cell:selected {
-	-fx-background-color: white-color;
-}
-
-
-.email-cell:empty {
-	visibility: hidden;
-}
-
-#email-cell-title {
-	-fx-font-size: 15;
-}
-
-#email-cell-title {
-	-fx-text-fill: black;
-}
+.email-cell:selected { -fx-background-color: white-color; }
+.email-cell:hover { -fx-background-color: white-color; }
+.email-cell:empty { visibility: hidden; }
+#email-cell-focused { -fx-background-color: teal-color; }
+#email-cell-title { -fx-font-size: 15; }
+#email-cell-title { -fx-text-fill: black; }
 
 #email-cell-message *, #email-cell-message  {
 	-fx-background-color: transparent;
 	-fx-border-color: transparent;
 }
 
- #email-cell-focused {
-	-fx-background-color: teal-color;
-} 
+/*** Message View ***/
 
-#message-long-view .scroll-bar {
-	visibility: hidden;
+#message-pane { -fx-background-color: white-color; }
+#message-title { -fx-font-size: 15; }
+#message-long-view .scroll-bar { visibility: hidden; }
+.line { -fx-stroke: light-grey-color; }
+
+/*** Folder Selection ***/
+
+#folder-view * {
+	-fx-background-color: mid-blue-color;
+	-fx-text-fill: white-color;
 }
-
-
-
-
-#message-title {
-	-fx-font-size: 15;
-}
-
+#folder-view .tree-cell:hover { -fx-text-fill: teal-color; }
+#folder-view .tree-cell:focused { -fx-background-color: folder-selected-color; -fx-text-fill: teal-color; }
 .tree-cell:focused > .tree-disclosure-node > .arrow,
 .tree-cell:expanded > .tree-disclosure-node > .arrow  {
 	 -fx-background-color: folder-selected-color;
 	 visibility: hidden;
 	 -fx-opacity:0;
 	 -fx-scale-x: 0;
-
  }
+ 
+ /*** Settings ***/
+ 
+ #settings-pane { -fx-background-color: dark-blue-color; }
+ 
+ /* Attachments */
 
-
-#folder-view .tree-cell:hover {
-/*	-fx-graphic: url("../img/default/hover/at-hover.png"); */
-	-fx-text-fill: teal-color;
+#attach-label { -fx-font-family: 'Rockwell'; }
+.attach-cell:empty { visibility: hidden; }
+#attachments-label {}
+#attachment-list {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+}
+.attach-cell {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
 }
 
-#folder-view .tree-cell:focused {
-	
-	-fx-background-color: folder-selected-color;
-	-fx-text-fill: teal-color;
-}
-
-/* Folder Icons */
+/* Icons */
 
 #gmail-folder { -fx-image: url("../img/default/idle/at.png"); }
 #inbox-folder { -fx-image: url("../img/default/idle/inbox.png"); }
@@ -117,115 +133,30 @@
 .tree-cell:hover > #star-folder, .tree-cell:focused > #star-folder { -fx-image: url("../img/default/hover/star-folder.png"); }
 .tree-cell:hover > #trash-folder, .tree-cell:focused > #trash-folder { -fx-image: url("../img/default/hover/trash-folder.png"); }
 
-
-
-.list-view .scroll-bar:vertical,
-.list-view .scroll-bar:horizontal {
-    -fx-scale-x: 0;
-    -fx-opacity: 0;
-    -fx-padding:-7;
-}
-
-#main-window-pane {
-	-fx-background-color: white-color;
-}
-
-#message-pane {
-	-fx-background-color: white-color;
-}
-
-#settings-pane {
-	-fx-background-color: dark-blue-color;
-}
-
-#account-pane {
-	-fx-background-color: dark-blue-color;
-}
-
-
-
-.text {
-	-fx-text-fill: black;
-}
-
-.font-rockwell {
-	-fx-font-family: 'Rockwell';
-}
-
-.font-myriad {
-	-fx-font-family: 'Myriad Pro';
-}
-
-.font-bold {
-	-fx-font-weight: bold;
-}
-
-.font-grey {
-	-fx-text-fill: dark-grey-color;
-}
-
-.font-white {
-	-fx-text-fill: white-color;
-}
-
-#folder-view * {
-	-fx-background-color: mid-blue-color;
-	-fx-text-fill: white-color;
-}
-
-#compose-key-pane {
-	-fx-background-color: mid-blue-color;
-}
-
-
-#compose-key {
-	-fx-background-color: teal-color;
-}
-
-
-.line {
-	-fx-stroke: light-grey-color;
-}
+#paper-clip { -fx-image: url("../img/default/idle/paper-clip.png"); }
 
 #key-trash {
-
-	-fx-graphic: url('../img/default/trash.png');
+	-fx-graphic: url('../img/default/idle/trash.png');
 	-fx-scale-x: 0.02;
 	-fx-scale-y: 0.02;
 	-fx-background-color: transparent;
 }
-
 #key-star {
-
-	-fx-graphic: url('../img/default/star.png');
+	-fx-graphic: url('../img/default/idle/star.png');
 	-fx-scale-x: 0.018;
 	-fx-scale-y: 0.018;
 	-fx-background-color: transparent;
 }
-
-/* Attachments */
-
-#attachment-list {
+#key-trash:hover, #key-trash:focused {
+	-fx-graphic: url('../img/default/hover/trash.png');
+	-fx-scale-x: 0.02;
+	-fx-scale-y: 0.02;
 	-fx-background-color: transparent;
-	-fx-border-color: transparent;
 }
-
-#attachments-label {
-	
-}
-
-.attach-cell {
+#key-star:hover, #key-trash:focused {
+	-fx-graphic: url('../img/default/hover/star.png');
+	-fx-scale-x: 0.018;
+	-fx-scale-y: 0.018;
 	-fx-background-color: transparent;
-	-fx-border-color: transparent;
 }
-
-.attach-cell:empty {
-	visibility: hidden;
-}
-
-#attach-label {
-	-fx-font-family: 'Rockwell';
-}
-
-
 

@@ -8,17 +8,15 @@ import javafx.stage.Stage;
 
 public class Launcher extends Application {
 	
-	private String account = "lis.email.ttest@gmail.com";
-	private String password = "Dragonfly1213";
+	private String account = "";
+	private String password = "";
 	
 
 	public static void main(String... args) {launch(args);}
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-		
-		
+				
 		EmailManager em = new EmailManager();
 		em.login(account, password);
 		em.fetchFolders();

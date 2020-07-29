@@ -167,10 +167,6 @@ public class MainWindowController extends BaseController implements Initializabl
 			}
 		});
 		
-//		folderSelection.getSelectionModel().
-
-		
-		
 	}
 	
 	private void setUpMRS() {
@@ -239,9 +235,7 @@ public class MainWindowController extends BaseController implements Initializabl
 	
 
     @FXML
-    void starKeyAction() {
-
-    }
+    void starKeyAction() {}
 
     @FXML
     void trashKeyAction() {
