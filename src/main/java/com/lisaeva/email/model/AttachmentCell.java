@@ -14,13 +14,13 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class AttachmentCell extends ListCell<Attachment>{
+public class AttachmentCell extends ListCell<Attachment> {
 
 	  @FXML private Label attachmentName;
 	  @FXML private ImageView attachmentImg;
 	  private Image thumbnail;
 	  
-	  public AttachmentCell() { loadFXML(); }
+	  public AttachmentCell() { loadFXML(); System.out.println("AttachmentCell created.");}
 	  
 	  private void loadFXML() {
 		try {
@@ -43,28 +43,32 @@ public class AttachmentCell extends ListCell<Attachment>{
 	            setContentDisplay(ContentDisplay.TEXT_ONLY);
 	        } else {  	
 	            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-	            String name = this.getItem().getName();
+	            Attachment attachment = this.getItem();
+	            String name = attachment.getName();
 	            attachmentName.setText(name);
 	            this.setTooltip( new Tooltip(name));
-	            MimeBodyPart mbp = this.getItem().getMBP();
 	            
-	            try {
-	    			if (mbp.getContentType().contains("IMAGE")) {
-	    				Service<Void> addImgService = new Service<Void>() {
-	    					@Override
-	    					protected Task<Void> createTask() {
-	    						return new Task<Void>() {
-	    							@Override
-	    							protected Void call() throws Exception {
-	    								thumbnail = new Image(mbp.getInputStream());
-	    								return null;
-	    							}};
-	    					}
-	    				};
-	    				addImgService.setOnSucceeded(e -> { if (thumbnail != null)attachmentImg.setImage(thumbnail); });
-	    				addImgService.start();	
-	    			}
-	    		} catch (MessagingException e) { e.printStackTrace(); }
+	            if (attachment.getImage() == null) {
+		            MimeBodyPart mbp = attachment.getMBP(); 
+		            try {
+		    			if (mbp.getContentType().contains("IMAGE")) {
+		    				Service<Void> addImgService = new Service<Void>() {
+		    					@Override
+		    					protected Task<Void> createTask() {
+		    						return new Task<Void>() {
+		    							@Override
+		    							protected Void call() throws Exception {
+		    								thumbnail = new Image(mbp.getInputStream());
+		    								attachment.setImage(thumbnail);
+		    								return null;
+		    							}};
+		    					}
+		    				};
+		    				addImgService.setOnSucceeded(e -> { if (thumbnail != null)attachmentImg.setImage(thumbnail); });
+		    				addImgService.start();	
+		    			}
+		    		} catch (MessagingException e) { e.printStackTrace(); }
+	            } else { attachmentImg.setImage(attachment.getImage()); }
 	        }
 	    }
 }

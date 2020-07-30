@@ -4,10 +4,12 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.scene.image.Image;
 
 public class Attachment {
 	
 	private MimeBodyPart mbp;
+	private Image image;
 	private String name;
 	private String downloadPath;
 	
@@ -18,6 +20,8 @@ public class Attachment {
 	}
 
 	public MimeBodyPart getMBP() { return mbp; }
+	public void setImage(Image image) { this.image = image; }
+	public Image getImage() { return image; }
 	public String getDownloadPath() { return downloadPath; }
 	
 	public String getName() {

@@ -56,6 +56,7 @@ public class MainWindowController extends BaseController implements Initializabl
 	 @FXML private TextField composeTo;
 	 @FXML private TextField composeTitle;
 	 @FXML private HTMLEditor htmlEditor;
+	 @FXML private ImageView composeAttachIcon;
 	 private static SimpleDateFormat dateFormat = new SimpleDateFormat("M'/'d'/'YYYY   H:mm");
 	 private MessageRendererService mrs;
 	 private EmailManager emailManager;
