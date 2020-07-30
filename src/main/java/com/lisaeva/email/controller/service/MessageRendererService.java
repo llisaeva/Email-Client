@@ -32,6 +32,7 @@ public class MessageRendererService extends Service<Object>{
 	}
 	
 	private void loadMessage() throws MessagingException, IOException {
+		if (emailMessage.getMessage().isExpunged()) {this.cancel();}
 		stringBuffer.setLength(0); 
 		Message message = emailMessage.getMessage();
 		String contentType = message.getContentType();

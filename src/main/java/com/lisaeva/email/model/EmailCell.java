@@ -50,17 +50,21 @@ public class EmailCell extends ListCell<EmailMessage>{
             setContentDisplay(ContentDisplay.TEXT_ONLY);
         } else {  	
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-            MessageRendererService mrs = new MessageRendererService(item);
-            mrs.setOnSucceeded(e -> {
-            	sender.setText(item.getSender().replaceAll("[<].*[>]", ""));
-    		    title.setText(item.getTitle());
-    		    date.setText(dateFormat.format(item.getDate()));   
-    		    makeBoldRows(!item.isRead());
-    		    
-    		    if(item.getDemoMessage() != null)message.setText(item.getDemoMessage());
-            });
-            mrs.start();
-            
+            if (!item.getMessage().isExpunged()) { 	
+	            MessageRendererService mrs = new MessageRendererService(item);
+	            mrs.setOnSucceeded(e -> {
+	            	sender.setText(item.getSender().replaceAll("[<].*[>]", ""));
+	    		    title.setText(item.getTitle());
+	    		    date.setText(dateFormat.format(item.getDate()));   
+	    		    makeBoldRows(!item.isRead());
+	    		    
+	    		    if (item.hasAttachment())attachment.setVisible(true);
+	            	else attachment.setVisible(false);
+	    		    
+	    		    if(item.getDemoMessage() != null)message.setText(item.getDemoMessage());
+	            });
+	            mrs.start();
+            }
             this.focusedProperty().addListener(new ChangeListener<Boolean>() {	
     			@Override
     			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {

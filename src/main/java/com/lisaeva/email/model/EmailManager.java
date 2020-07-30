@@ -1,9 +1,15 @@
 package com.lisaeva.email.model;
 
 import javax.mail.Flags;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
 import com.lisaeva.email.controller.service.FetchFoldersService;
 import com.lisaeva.email.controller.service.FolderUpdateService;
 import com.lisaeva.email.controller.service.LoginService;
+import com.lisaeva.email.view.ViewGenerator;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 
 
 public class EmailManager {
@@ -24,6 +30,7 @@ public class EmailManager {
 	
 	public void fetchFolders() {
 		FetchFoldersService ffs = new FetchFoldersService(emailAccount.getStore(), foldersRoot, emailAccount.getFolders());
+		ffs.setOnSucceeded(e -> ViewGenerator.showMainWindow(this));
 		ffs.start();
 	}
 	
@@ -37,12 +44,32 @@ public class EmailManager {
 	
 	public void deleteSelectedMessage() {
 		try {
-			selectedMessage.getMessage().setFlag(Flags.Flag.DELETED, true);
-//			selectedFolder.getFolder().setFlags(selectedMessage.getMessage(), Flags.Flag.DELETED, true);
-			selectedMessage.getMessage().getFolder().expunge();
-			selectedFolder.getEmailMessages().remove(selectedMessage);
-//			while (!folder.getName().toLowerCase().contains("inbox"))folder = folder.getParent();
-//			folder.expunge();	
+/* !! */		Service<Void> deleteMessageService = new Service<Void>() {
+				@Override
+				protected Task<Void> createTask() {
+					return new Task<Void>() {
+						@Override
+						protected Void call() throws Exception {
+							Message message = selectedMessage.getMessage();
+							Folder folder = message.getFolder();
+							folder.close();
+							folder.open(Folder.READ_WRITE);
+							message.setFlag(Flags.Flag.DELETED, true);
+//							message.saveChanges();
+//							selectedFolder.getFolder().setFlags(selectedMessage.getMessage(), Flags.Flag.DELETED, true);
+							return null;
+						}
+						
+					};
+				}
+				
+			}; deleteMessageService.setOnSucceeded(e -> {
+				try {
+					selectedMessage.getMessage().getFolder().expunge();
+					selectedFolder.getEmailMessages().remove(selectedMessage);
+				} catch (MessagingException e1) { e1.printStackTrace(); }
+			}); deleteMessageService.start();
+			
 		} catch (Exception e) { e.printStackTrace(); }	
 	}
 }

@@ -34,62 +34,62 @@
       </ImageView>
       <AnchorPane id="message-pane" fx:id="messagePane" layoutX="492.0" layoutY="159.0" prefHeight="200.0" prefWidth="508.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="492.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="messageDate" alignment="TOP_RIGHT" layoutX="340.0" layoutY="14.0" prefHeight="17.0" prefWidth="139.0">
+            <Label fx:id="messageDate" alignment="TOP_RIGHT" layoutX="340.0" layoutY="14.0" prefHeight="17.0" prefWidth="139.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="14.0">
                <styleClass>
                   <String fx:value="font-rockwell" />
                   <String fx:value="font-grey" />
                </styleClass>
             </Label>
-            <Label id="message-title" fx:id="messageTitle" layoutX="26.0" layoutY="11.0" prefHeight="23.0" prefWidth="319.0">
+            <Label id="message-title" fx:id="messageTitle" layoutX="17.0" layoutY="19.0" prefHeight="23.0" prefWidth="319.0" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="19.0">
                <styleClass>
                   <String fx:value="font-rockwell" />
                   <String fx:value="font-bold" />
                </styleClass>
             </Label>
-            <Label fx:id="messageSenderName" layoutX="26.0" layoutY="37.0" prefHeight="17.0" prefWidth="302.0">
+            <Label fx:id="messageSenderName" layoutX="17.0" layoutY="43.0" prefHeight="17.0" prefWidth="302.0" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="43.0">
                <styleClass>
                   <String fx:value="font-rockwell" />
                   <String fx:value="font-grey" />
                </styleClass>
             </Label>
-            <Button id="key-trash" fx:id="messageKeyTrash" layoutX="-183.0" layoutY="-591.0" mnemonicParsing="false" onAction="#trashKeyAction" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/themeDefault.css" />
-            <Button id="key-star" fx:id="messageKeyStar" layoutX="-209.0" layoutY="-591.0" mnemonicParsing="false" onAction="#starKeyAction" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/themeDefault.css" />
-            <Line fx:id="headerDiv" endX="336.5999755859375" layoutX="126.0" layoutY="79.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" />
-            <WebView id="message-long-view" fx:id="messageViewLong" layoutX="9.0" layoutY="86.0" prefHeight="579.0" prefWidth="489.0" />
-            <WebView id="message-long-view" fx:id="messageViewShort" layoutX="9.0" layoutY="88.0" prefHeight="427.0" prefWidth="489.0" />
-            <Line fx:id="footerDiv" endX="336.5999755859375" layoutX="126.0" layoutY="548.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" visible="false" />
-            <Label id="attachments-label" fx:id="messageAttachmentLabel" layoutX="24.0" layoutY="523.0" prefHeight="17.0" prefWidth="116.0" text="ATTACHMENTS" visible="false">
+            <Button id="key-trash" fx:id="messageKeyTrash" layoutX="-183.0" layoutY="-591.0" mnemonicParsing="false" onAction="#trashKeyAction" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/themeDefault.css" AnchorPane.rightAnchor="-603.0" AnchorPane.topAnchor="-591.0" />
+            <Button id="key-star" fx:id="messageKeyStar" layoutX="-209.0" layoutY="-591.0" mnemonicParsing="false" onAction="#starKeyAction" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/themeDefault.css" AnchorPane.rightAnchor="-577.0" AnchorPane.topAnchor="-591.0" />
+            <Line fx:id="headerDiv" endX="336.5999755859375" layoutX="126.0" layoutY="79.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="78.0" />
+            <WebView id="message-long-view" fx:id="messageViewLong" layoutX="9.0" layoutY="86.0" prefHeight="579.0" prefWidth="489.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="86.0" />
+            <WebView id="message-long-view" fx:id="messageViewShort" layoutX="9.0" layoutY="88.0" prefHeight="427.0" prefWidth="489.0" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="88.0" />
+            <Line fx:id="footerDiv" endX="336.5999755859375" layoutX="126.0" layoutY="548.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" visible="false" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" />
+            <Label id="attachments-label" fx:id="messageAttachmentLabel" layoutX="24.0" layoutY="523.0" prefHeight="17.0" prefWidth="116.0" text="ATTACHMENTS" visible="false" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="24.0">
                <styleClass>
                   <String fx:value="font-rockwell" />
                   <String fx:value="font-grey" />
                </styleClass>
             </Label>
-            <ListView id="attachment-list" fx:id="attachmentList" layoutY="555.0" orientation="HORIZONTAL" prefHeight="111.0" prefWidth="508.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <ListView id="attachment-list" fx:id="attachmentList" layoutY="555.0" orientation="HORIZONTAL" prefHeight="111.0" prefWidth="508.0" visible="false" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
       <AnchorPane id="composer-pane" fx:id="composePane" layoutX="492.0" layoutY="159.0" prefHeight="200.0" prefWidth="508.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="492.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HTMLEditor id="editor" fx:id="htmlEditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="86.0" prefHeight="518.0" prefWidth="508.0" />
-            <TextField id="field-send-to" fx:id="composeTo" layoutX="20.0" layoutY="13.0" prefHeight="26.0" prefWidth="469.0" promptText="to:">
+            <HTMLEditor id="editor" fx:id="htmlEditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="86.0" prefHeight="518.0" prefWidth="508.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0" />
+            <TextField id="field-send-to" fx:id="composeTo" layoutX="20.0" layoutY="13.0" prefHeight="26.0" prefWidth="469.0" promptText="to:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="13.0">
                <styleClass>
                   <String fx:value="font-rockwell" />
                   <String fx:value="font-grey" />
                </styleClass></TextField>
-            <TextField id="field-title" fx:id="composeTitle" layoutX="20.0" layoutY="50.0" prefHeight="26.0" prefWidth="469.0" promptText="title:">
+            <TextField id="field-title" fx:id="composeTitle" layoutX="20.0" layoutY="50.0" prefHeight="26.0" prefWidth="469.0" promptText="title:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
                <styleClass>
                   <String fx:value="font-rockwell" />
                   <String fx:value="font-grey" />
                </styleClass></TextField>
-            <ImageView fitHeight="41.0" fitWidth="148.0" layoutX="340.0" layoutY="619.0">
+            <ImageView fitHeight="41.0" fitWidth="148.0" layoutX="340.0" layoutY="619.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="20.0">
                <image>
                   <Image url="@../img/default/idle/composer-tools-box.png" />
                </image>
             </ImageView>
             <Button id="send-key" layoutX="245.00000000000006" layoutY="428.00000000000006" mnemonicParsing="false" onAction="#composeSendPressed" prefHeight="45.0" prefWidth="45.0" stylesheets="@../css/themeDefault.css" AnchorPane.bottomAnchor="-179.20000000000005" AnchorPane.rightAnchor="-170.20000000000005" />
-            <Button id="attach-key" layoutX="183.00000000000006" layoutY="427.00000000000006" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" stylesheets="@../css/themeDefault.css" AnchorPane.bottomAnchor="-178.20000000000005" AnchorPane.rightAnchor="-108.20000000000005" />
+            <Button id="attach-key" layoutX="183.00000000000006" layoutY="427.00000000000006" mnemonicParsing="false" onAction="#addAttachment" prefHeight="30.0" prefWidth="30.0" stylesheets="@../css/themeDefault.css" AnchorPane.bottomAnchor="-178.20000000000005" AnchorPane.rightAnchor="-108.20000000000005" />
             <Button id="compose-cancel-key" layoutX="148.00000000000006" layoutY="427.00000000000006" mnemonicParsing="false" onAction="#composeCancel" prefHeight="30.0" prefWidth="30.0" stylesheets="@../css/themeDefault.css" AnchorPane.bottomAnchor="-178.20000000000005" AnchorPane.rightAnchor="-73.20000000000005" />
-            <ImageView id="compose-attached-icon" fx:id="composeAttachIcon" fitHeight="45.0" fitWidth="45.0" layoutX="10.0" layoutY="614.0" pickOnBounds="true" preserveRatio="true" />
-            <Line fx:id="footerDiv1" endX="336.5999755859375" layoutX="135.0" layoutY="604.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" />
+            <ImageView id="compose-attached-icon" fx:id="composeAttachIcon" fitHeight="45.0" fitWidth="45.0" layoutX="10.0" layoutY="614.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" />
+            <Line fx:id="footerDiv1" endX="336.5999755859375" layoutX="135.0" layoutY="604.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" AnchorPane.bottomAnchor="69.0" AnchorPane.rightAnchor="35.0" />
          </children>
       </AnchorPane>
       <AnchorPane id="account-pane" layoutY="474.0" prefHeight="70.0" prefWidth="190.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
@@ -104,9 +104,9 @@
             <Label fx:id="userEmailLabel" layoutX="8.0" layoutY="31.0" prefHeight="17.0" prefWidth="165.0" styleClass="font-rockwell" />
          </children>
       </AnchorPane>
-      <AnchorPane id="settings-pane" layoutX="4.0" prefHeight="30.0" prefWidth="492.0" AnchorPane.bottomAnchor="642.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="508.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="settings-pane" layoutX="-13.0" layoutY="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="492.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField id="search-bar" layoutX="226.0" layoutY="3.0" prefHeight="25.0" prefWidth="232.0">
+            <TextField id="search-bar" focusTraversable="false" layoutX="226.0" layoutY="3.0" prefHeight="25.0" prefWidth="232.0">
                <padding>
                   <Insets left="20.0" />
                </padding></TextField>

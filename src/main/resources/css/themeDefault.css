@@ -39,6 +39,13 @@
 #account-pane { -fx-background-color: dark-blue-color; }
 #compose-key-pane { -fx-background-color: mid-blue-color; }
 
+/*** Login ***/
+
+.login-field { 
+	-fx-background-color: transparent;
+	-fx-font-size: 20;
+}
+#login-key { -fx-font-size: 35; }
 
 /*** Email Selection ***/
 
@@ -158,6 +165,25 @@
 .tree-cell:hover > #trash-folder, .tree-cell:focused > #trash-folder { -fx-image: url("../img/default/hover/trash-folder.png"); }
 
 #paper-clip { -fx-image: url("../img/default/idle/paper-clip.png"); }
+#email-cell-clip { -fx-image: url("../img/default/idle/email-cell-clip.png"); }
+#login-email-icon { -fx-image: url("../img/default/idle/login-email-icon.png"); }
+#login-pass-icon { -fx-image: url("../img/default/idle/login-pass-icon.png"); }
+
+#login-key {
+	-fx-background-color: transparent;
+	-fx-background-image: url('../img/default/idle/login-key.png');
+	-fx-background-size: 367px;  
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+}
+
+#login-key:hover {
+	-fx-background-color: transparent;
+	-fx-background-image: url('../img/default/hover/login-key.png');
+	-fx-background-size: 367px;  
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+}
 
 #settings-key {
 	-fx-graphic: url('../img/default/idle/settings.png');

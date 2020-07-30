@@ -3,6 +3,7 @@ package com.lisaeva.email.view;
 import java.io.IOException;
 import java.io.InputStream;
 import com.lisaeva.email.controller.BaseController;
+import com.lisaeva.email.controller.LoginController;
 import com.lisaeva.email.controller.MainWindowController;
 import com.lisaeva.email.model.EmailManager;
 import javafx.fxml.FXMLLoader;
@@ -16,14 +17,25 @@ public class ViewGenerator {
 	private static String theme = "/css/themeDefault.css";
 	private static String fontFile1 = "/font/Myriad_Pro_Regular.ttf";
 	private static String fontFile2 = "/font/Myriad_Pro_Light_SemiCondensed.otf";
+	private static Stage stage;
 	
 	public static void initialize(EmailManager em) {	
 		loadFont();
-		BaseController controller = new MainWindowController(em);
-		Stage stage = new Stage();
+		BaseController controller = new LoginController(em);
+		stage = new Stage();
 		stage.setScene(initializeScene(controller));
 		stage.show();
 	}
+	
+	public static void showMainWindow(EmailManager em) {
+		stage.close();
+		BaseController controller = new MainWindowController(em);
+		stage = new Stage();
+		stage.setScene(initializeScene(controller));
+		stage.show();
+	}
+	
+	public static void closeStage(Stage stage) { stage.close(); }
 	
 	private static Scene initializeScene(BaseController controller) {
 		FXMLLoader fxmlLoader = new FXMLLoader(ViewGenerator.class.getResource(controller.getFXML()));

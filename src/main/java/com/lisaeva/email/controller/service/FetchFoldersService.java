@@ -73,7 +73,7 @@ public class FetchFoldersService extends Service<Void>{
 					}
 				}
 			}
-/* !! */	@Override
+			@Override
 			public void messagesRemoved(MessageCountEvent e) {}	
 		});
 	}

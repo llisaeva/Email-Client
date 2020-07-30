@@ -30,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 public class MainWindowController extends BaseController implements Initializable {
@@ -58,9 +59,12 @@ public class MainWindowController extends BaseController implements Initializabl
 	 @FXML private HTMLEditor htmlEditor;
 	 @FXML private ImageView composeAttachIcon;
 	 private static SimpleDateFormat dateFormat = new SimpleDateFormat("M'/'d'/'YYYY   H:mm");
+	 private ArrayList<File> attachments = new ArrayList<File>();
 	 private MessageRendererService mrs;
 	 private EmailManager emailManager;
 	 private StringBuffer stringBuffer;
+	 private String htmlBackup;
+	 private boolean hasAttachment;
 	 
 	 public MainWindowController(EmailManager emailManager) {
 		 super("/fxml/main.fxml", emailManager);
@@ -81,6 +85,7 @@ public class MainWindowController extends BaseController implements Initializabl
 			public ListCell<Attachment> call(ListView<Attachment> param) { return new AttachmentCell(); }	
 		});
 
+		htmlBackup = htmlEditor.getHtmlText();
 		messageAttachmentLabel.setGraphic(IconResolver.getIcon("paper-clip"));
 		userNameLabel.setText(emailManager.getEmailAccount().getAddress());
 		setUpMRS();
@@ -193,10 +198,15 @@ public class MainWindowController extends BaseController implements Initializabl
 				composeTitle.getText(),
 				composeTo.getText(),
 				htmlEditor.getHtmlText(),
-				new ArrayList<File>());
+				attachments);
+    	emailSenderService.setOnSucceeded(e -> {
+    	});
     	emailSenderService.start();
     	setComposeViewVisible(false);
-    	
+    	composeAttachIcon.setVisible(false);
+		composeTitle.clear();
+		composeTo.clear();
+		htmlEditor.setHtmlText(htmlBackup);
     	if (!messageSenderName.getText().isBlank())setMessageViewVisible(true);
     }
 	
@@ -207,5 +217,15 @@ public class MainWindowController extends BaseController implements Initializabl
     void trashKeyAction() {
     	emailManager.deleteSelectedMessage();
     	setMessageViewVisible(false);
+    }
+    
+    @FXML
+    void addAttachment() {
+    	FileChooser fileChooser = new FileChooser();
+    	File selectedFile = fileChooser.showOpenDialog(null);
+    	if(selectedFile != null){
+    		attachments.add(selectedFile);
+    		composeAttachIcon.setVisible(true);
+    	}
     }
 }

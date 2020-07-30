@@ -20,7 +20,7 @@ public class AttachmentCell extends ListCell<Attachment> {
 	  @FXML private ImageView attachmentImg;
 	  private Image thumbnail;
 	  
-	  public AttachmentCell() { loadFXML(); System.out.println("AttachmentCell created.");}
+	  public AttachmentCell() { loadFXML(); }
 	  
 	  private void loadFXML() {
 		try {

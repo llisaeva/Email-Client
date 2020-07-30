@@ -69,8 +69,7 @@ public class EmailSendingService extends Service<Void> {
 					e.printStackTrace();
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
-				return null; 
+				} return null; 
 			}
 		};
 	}

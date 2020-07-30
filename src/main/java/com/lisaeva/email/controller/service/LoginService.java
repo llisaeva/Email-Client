@@ -35,22 +35,6 @@ public class LoginService {
 						  emailAccount.getPassword());	
 			emailAccount.setStore(store);
 			
-//			Folder inbox = store.getFolder("INBOX");
-//			 // open the INBOX folder
-//			 inbox.open(Folder.READ_WRITE);
-//			 Message m = inbox.getMessage(1); // get Message # 1
-//			 String subject = m.getSubject(); // get Subject
-//			 System.out.println(subject);
-//			  m = inbox.getMessage(2);
-//			 subject = m.getSubject(); 
-//			 System.out.println(subject);
-//			 m = inbox.getMessage(3);
-//			 subject = m.getSubject(); 
-//			 System.out.println(subject);
-//			 m = inbox.getMessage(4);
-//			 subject = m.getSubject();  
-//			 System.out.println(subject);
-			
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
 		} catch (MessagingException e) {
