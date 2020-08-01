@@ -1,7 +1,7 @@
 # Email Client
 __Using a Gmail account, the user can:__
-- Recieve, read and send emails (from and to any existing email account).
-- Send, recieve and download image attachments.
+- Receive, read and send emails (from/to any existing email account).
+- Send, receive and download image attachments.
 # Project
 __This project was made to practice OOP concepts, use the Model-View-Controller design pattern and create a UI.__
 
