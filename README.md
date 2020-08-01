@@ -1,10 +1,15 @@
-# Email Client (Work in progress)
-
-__User can recieve, read and send emails using a Gmail account.__
+# Email Client
+__Using a Gmail account, the user can:__
+- Recieve, read and send emails (from and to any existing email account).
+- Send, recieve and download image attachments.
 
 <p>
-  <img src="https://github.com/llisaeva/Email-Client/blob/master/demo_img/Capture.jpg" align ="right"/>
+  <img src="https://github.com/llisaeva/Email-Client/blob/master/demo_img/email-client-demo.gif" alt ="animated" align ="right"/>
 </p>
+
+
+## Project
+This project was made to practice OOP concepts, use the Model-View-Controller design pattern and create a UI.
 
 ## Tools used
 - [Java 14](https://www.oracle.com/java/technologies/javase-downloads.html)
