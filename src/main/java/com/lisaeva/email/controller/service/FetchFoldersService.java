@@ -18,6 +18,7 @@ public class FetchFoldersService extends Service<Void>{
 	private FolderTreeItem foldersRoot;
 	private Store store;
 	
+	
 	public FetchFoldersService(Store store, FolderTreeItem foldersRoot, ArrayList<Folder> folderList) {
 		this.store = store;
 		this.foldersRoot = foldersRoot;
@@ -49,9 +50,6 @@ public class FetchFoldersService extends Service<Void>{
 			foldersRoot.setExpanded(true);
 			fetchMessagesOnFolder(folderTreeItem);
 			addMessageListenerToFolder(folder, folderTreeItem);
-//			if (folder.getName().equalsIgnoreCase("inbox")) {
-//				EmailManager.setUpInbox(emailTreeItem);
-//			}
 			if (folder.getType() == Folder.HOLDS_FOLDERS) {
 				Folder[] subFolders = folder.list();
 				handleFolders(subFolders, folderTreeItem);

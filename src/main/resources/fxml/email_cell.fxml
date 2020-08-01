@@ -39,7 +39,7 @@
                   <String fx:value="font-grey" />
                </styleClass></TextArea>
       <ImageView id="email-cell-clip" fx:id="attachment" fitHeight="34.0" fitWidth="33.0" layoutX="257.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-            <Pane id="email-cell-focused" fx:id="selected" layoutY="-1.0" prefHeight="100.0" prefWidth="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="290.0" AnchorPane.topAnchor="0.0" />
+            <Pane id="email-cell-focused" fx:id="selected" layoutY="-1.0" prefHeight="100.0" prefWidth="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="290.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>
 </graphic>

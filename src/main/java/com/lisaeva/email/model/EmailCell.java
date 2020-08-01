@@ -3,8 +3,6 @@ package com.lisaeva.email.model;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import com.lisaeva.email.controller.service.MessageRendererService;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContentDisplay;
@@ -65,14 +63,8 @@ public class EmailCell extends ListCell<EmailMessage>{
 	            });
 	            mrs.start();
             }
-            this.focusedProperty().addListener(new ChangeListener<Boolean>() {	
-    			@Override
-    			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-    				setSelectedIcon(false);
-    		}});
-        	
+
         	this.setOnMouseClicked(e -> {
-        		this.setSelectedIcon(true);
         		item.setRead(true);
         		makeBoldRows(false);	
     	    }); 

@@ -52,9 +52,9 @@
                   <String fx:value="font-grey" />
                </styleClass>
             </Label>
-            <Button id="key-trash" fx:id="messageKeyTrash" layoutX="-183.0" layoutY="-591.0" mnemonicParsing="false" onAction="#trashKeyAction" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/themeDefault.css" AnchorPane.rightAnchor="-603.0" AnchorPane.topAnchor="-591.0" />
-            <Button id="key-star" fx:id="messageKeyStar" layoutX="-209.0" layoutY="-591.0" mnemonicParsing="false" onAction="#starKeyAction" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/themeDefault.css" AnchorPane.rightAnchor="-577.0" AnchorPane.topAnchor="-591.0" />
-            <Line fx:id="headerDiv" endX="336.5999755859375" layoutX="126.0" layoutY="79.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="78.0" />
+            <Button id="key-trash" layoutX="-183.0" layoutY="-591.0" mnemonicParsing="false" onAction="#trashKeyAction" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/themeDefault.css" AnchorPane.rightAnchor="-603.0" AnchorPane.topAnchor="-591.0" />
+            <Button id="key-star" layoutX="-209.0" layoutY="-591.0" mnemonicParsing="false" onAction="#starKeyAction" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/themeDefault.css" AnchorPane.rightAnchor="-577.0" AnchorPane.topAnchor="-591.0" />
+            <Line endX="336.5999755859375" layoutX="126.0" layoutY="79.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="78.0" />
             <WebView id="message-long-view" fx:id="messageViewLong" layoutX="9.0" layoutY="86.0" prefHeight="579.0" prefWidth="489.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="86.0" />
             <WebView id="message-long-view" fx:id="messageViewShort" layoutX="9.0" layoutY="88.0" prefHeight="427.0" prefWidth="489.0" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="88.0" />
             <Line fx:id="footerDiv" endX="336.5999755859375" layoutX="126.0" layoutY="548.0" startX="-99.4000244140625" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="line" visible="false" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" />
@@ -101,7 +101,6 @@
                   <String fx:value="font-white" />
                </styleClass>
             </Label>
-            <Label fx:id="userEmailLabel" layoutX="8.0" layoutY="31.0" prefHeight="17.0" prefWidth="165.0" styleClass="font-rockwell" />
          </children>
       </AnchorPane>
       <AnchorPane id="settings-pane" layoutX="-13.0" layoutY="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="492.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">

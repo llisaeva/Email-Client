@@ -69,7 +69,7 @@
 .email-cell:selected { -fx-background-color: white-color; }
 .email-cell:hover { -fx-background-color: white-color; }
 .email-cell:empty { visibility: hidden; }
-#email-cell-focused { -fx-background-color: teal-color; }
+.email-cell:selected > #email-cell-pane #email-cell-focused { -fx-background-color: teal-color; }
 #email-cell-title { -fx-font-size: 15; }
 #email-cell-title { -fx-text-fill: black; }
 
@@ -92,16 +92,9 @@
 	-fx-text-fill: white-color;
 	-fx-border-color: transparent;
 }
-#folder-view, #folder-view:focused {  }
+#folder-view .tree-cell > .tree-disclosure-node  {   -fx-background-color: transparent;}
 #folder-view .tree-cell:hover { -fx-text-fill: teal-color; }
 #folder-view .tree-cell:focused { -fx-background-color: folder-selected-color; -fx-text-fill: teal-color; }
-.tree-cell:focused > .tree-disclosure-node > .arrow,
-.tree-cell:expanded > .tree-disclosure-node > .arrow  {
-	 -fx-background-color: folder-selected-color;
-	 visibility: hidden;
-	 -fx-opacity:0;
-	 -fx-scale-x: 0;
- }
  
 /*** Composer Window ***/
   
@@ -221,7 +214,7 @@
 	-fx-scale-y: 0.02;
 	-fx-background-color: transparent;
 }
-#key-star:hover, #key-trash:focused {
+#key-star:hover, #key-star:focused {
 	-fx-graphic: url('../img/default/hover/star.png');
 	-fx-scale-x: 0.018;
 	-fx-scale-y: 0.018;

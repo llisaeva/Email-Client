@@ -19,6 +19,11 @@ public class FolderTreeItem extends TreeItem<String>{
 		this.name = "";
 	}
 	
+	public FolderTreeItem(String name) {
+		super(name);
+		this.name = name;
+	}
+	
 	public FolderTreeItem(Folder folder) {
 		super(folder.getName());
 		emails = FXCollections.observableArrayList();
@@ -29,9 +34,6 @@ public class FolderTreeItem extends TreeItem<String>{
 	public void addEmail(Message message) {
 		EmailMessage email = fetchMessage(message);
 		addEmail(email);
-//		if(!messageIsRead)
-//			incrementMessagesCount();
-//		return emailMessage;
 	}
 	
 	private EmailMessage fetchMessage(Message message) {
@@ -58,13 +60,3 @@ public class FolderTreeItem extends TreeItem<String>{
 	public String toString() { return name; }
 	private void addEmail(EmailMessage email) { emails.add(email); }	
 }
-//message.getRecipients(MimeMessage.RecipientType.TO)[0].toString(),
-//message.getSize(),
-//
-//messageIsRead,
-//message
-
-
-
-
-

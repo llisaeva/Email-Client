@@ -15,3 +15,5 @@ bin/
 gradle.properties
 
 runArgs.txt
+
+src/main/resources/demo

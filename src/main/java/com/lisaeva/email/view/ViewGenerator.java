@@ -9,6 +9,7 @@ import com.lisaeva.email.model.EmailManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -23,6 +24,8 @@ public class ViewGenerator {
 		loadFont();
 		BaseController controller = new LoginController(em);
 		stage = new Stage();
+		stage.getIcons().add(new Image("/img/default/email-client.png"));
+        stage.setTitle("EmailClient");
 		stage.setScene(initializeScene(controller));
 		stage.show();
 	}
@@ -31,6 +34,8 @@ public class ViewGenerator {
 		stage.close();
 		BaseController controller = new MainWindowController(em);
 		stage = new Stage();
+		stage.getIcons().add(new Image("/img/default/email-client.png"));
+        stage.setTitle("EmailClient");
 		stage.setScene(initializeScene(controller));
 		stage.show();
 	}

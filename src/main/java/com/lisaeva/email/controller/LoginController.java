@@ -1,7 +1,6 @@
 package com.lisaeva.email.controller;
 
 import com.lisaeva.email.model.EmailManager;
-import com.lisaeva.email.view.ViewGenerator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -19,7 +18,9 @@ public class LoginController extends BaseController{
 	}
 	
 	@FXML void loginAction() {
-		em.login(emailField.getText(), passwordField.getText());
+		String email = emailField.getText();
+		String password = passwordField.getText();
+		em.login(email, password);
 		em.fetchFolders();
     }
 

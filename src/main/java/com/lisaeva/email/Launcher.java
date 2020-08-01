@@ -11,7 +11,7 @@ public class Launcher extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {			
-		EmailManager em = new EmailManager();
+		EmailManager em = new EmailManager();	
 		ViewGenerator.initialize(em);
 	}
 }
